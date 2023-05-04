@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Image from 'next/image'
 
 export default function Productitem({ product }) {
   return (
@@ -7,12 +8,13 @@ export default function Productitem({ product }) {
     <div className="flex flex-col items-center" style={{width:250,height:260}}>
       <div style={{background:'#F6F7FB',height:200,width:250}} className="flex justify-center pt-5">
       <Link href={`/product/${product.slug}`}>
-        <img
+        <Image
           src={product.image}
           alt="product image"
           className="rounded shadow"
           style={{height:200,width:200,justifyContent:'center',alignItems:'center'}}
-          
+          width={200}
+          height={200}
         />
       </Link>
       </div>

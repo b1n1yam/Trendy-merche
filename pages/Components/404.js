@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from './Layout'
+import Image from 'next/image'
 
 export default function Contactus() {
   return (
@@ -9,7 +10,7 @@ export default function Contactus() {
         <h1 className='text-black p-10 mx-20' style={{fontSize:30,fontWeight:'bold',color:'#071242',paddingLeft:20}}>404 Not Found</h1>
         </div>
         <div className="flex flex-row w-full justify-center">
-        <img
+        <Image
           src='/images/notFound.jpg'
           alt="Not Found Image"
           className="rounded shadow items-center"
