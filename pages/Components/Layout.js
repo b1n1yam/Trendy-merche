@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 export default function Layout({ children }) {
@@ -16,12 +17,12 @@ export default function Layout({ children }) {
             <div className="justify-around flex flx-row mx-10">
               <div className="px-5">
                 <Link href="/" className="px-5">
-                  <a className="text-md">someone@gmail.com</a>
+                  <a className="text-md">trendymerches@gmail.com</a>
                 </Link>
               </div>
               <div className="px-5">
                 <Link href="/" className="px-5">
-                  <a className="text-md">(251)943476984</a>
+                  <a className="text-md">(251)11893456</a>
                 </Link>
               </div>
             </div>
@@ -46,14 +47,21 @@ export default function Layout({ children }) {
           <nav className="flex h-10 items-center px-10 py-8 justify-between ">
             <div className="flex flex-row justify-around">
               <Link href="/">
-                <a className="text-lg font-bold text-black">Trendy Merches</a>
+                {/* <a className="text-lg font-bold text-black">Trendy Merches</a> */}
+                <Image
+                  alt={'Trendy Merches Logo'}
+                  src={'/images/Trendy Merches.png'}
+                  height={20}
+                  width={180}
+
+                />
               </Link>
               <div className="px-10 hidden md:block">
                 <Link href="/containers/Main/Homepage">
                   <a className="text-md px-6 text-black">Home</a>
                 </Link>
-               
-                <Link href="/">
+
+                <Link href="/containers/Main/AllArtistPage">
                   <a className="text-md px-6 text-black">Product</a>
                 </Link>
                 <Link href="/">

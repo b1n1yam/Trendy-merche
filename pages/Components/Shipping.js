@@ -3,8 +3,12 @@ import Layout from "./Layout";
 import Image from "next/image";
 import Link from "next/link";
 import ShoppingCart from "./ShoppingCart";
+import { useRouter } from "next/router";
 
 export default function Shipping() {
+  const router = useRouter();
+  const data = router.query;
+  console.log('Shipping cart data ', data)
   return (
     <Layout>
       <div className="contactHeader" style={{ height: 150 }}>
@@ -25,7 +29,8 @@ export default function Shipping() {
           <h1 className="font-bold tableHeader m-10">Shipping + Payment</h1>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-6 gap-5">
+        <div className="col-span-1" />
         <div className="shippingContact overflow-x-auto col-span-3 p-4 rounded-lg my-10">
           <div>
             <h1 className="tableHeader font-bold my-10">Contact Information</h1>
@@ -82,39 +87,14 @@ export default function Shipping() {
           </div>
         </div>
         <div>
-          <div
-            className="flex flex-row shippingContactLeft"
-            style={{ borderBottomWidth: 1, borderBottomColor: "grey" }}
-          >
-            <div>
-              <Image
-                src="/images/1cloth.jpg"
-                alt="Picture of the author"
-                width={150}
-                height={150}
-              />
-            </div>
-            <div className="flex flex-row w-full justify-between px-5">
-              <div>
-                <h3 className="tableHeader">addidas</h3>
-                <h2 className="tableHeader">Color: Brown</h2>
-                <h2 className="tableHeader">Size :XL</h2>
-              </div>
-              <div
-                className="justify-center align-center tableHeader"
-                style={{ marginRight: 6 }}
-              >
-                $32.00
-              </div>
-            </div>
-          </div>
+
           <div
             className="flex flex-row shippingContactLeft justify-center"
             style={{ borderBottomWidth: 1, borderBottomColor: "grey" }}
           >
             <div>
               <Image
-                src="/images/1cloth.jpg"
+                src={data.productimageUrl}
                 alt="Picture of the author"
                 width={150}
                 height={150}
@@ -122,8 +102,8 @@ export default function Shipping() {
             </div>
             <div className="flex flex-row w-full justify-between px-5">
               <div>
-                <h3 className="tableHeader">addidas</h3>
-                <h2 className="tableHeader">Color: Brown</h2>
+                <h3 className="tableHeader">{data?.productName}</h3>
+                <h2 className="tableHeader">Color: Red</h2>
                 <h2 className="tableHeader">Size :XL</h2>
               </div>
               <div
@@ -134,13 +114,13 @@ export default function Shipping() {
               </div>
             </div>
           </div>
-          <div
+          {/* <div
             className="flex flex-row shippingContactLeft"
             style={{ borderBottomWidth: 1, borderBottomColor: "grey" }}
           >
             <div>
               <Image
-                src="/images/1cloth.jpg"
+                src="/images/blackhoodies.jpg"
                 alt="Picture of the author"
                 width={150}
                 height={150}
@@ -159,7 +139,7 @@ export default function Shipping() {
                 $32.00
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="checkOut">
             <div className="flex flex-row justify-between p-2">
               <h2 className="tableHeader">Subtotals </h2>

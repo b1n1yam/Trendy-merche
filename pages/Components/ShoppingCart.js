@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from 'next/router'
 const CartItems = [
   {
     image: "/images/1shoes.jpg",
@@ -29,11 +30,16 @@ const CartItems = [
   },
 ];
 export default function ShoppingCart() {
+  const router = useRouter();
+  const data = router.query;
+  console.log("Shopping Cart side ", data)
+  const [count, setCount] = useState(0);
   return (
     <Layout>
-      <div className="contactHeader" style={{ height: 150 }}>
+      <div className="contactHeader grid grid-cols-5" style={{ height: 150 }}>
+        <div className="col-span-1" />
         <h1
-          className="text-black p-10 mx-20"
+          className="text-black p-10 mx-20 col-span-2"
           style={{
             fontSize: 30,
             fontWeight: "bold",
@@ -44,8 +50,9 @@ export default function ShoppingCart() {
           Shopping Cart
         </h1>
       </div>
-      <div className="grid grid-cols-4 md:gap-5 mx-10">
-        <div className="overflow-x-auto col-span-3">
+      <div className="grid grid-cols-5 md:gap-5 mx-10">
+        <div className="col-span-1" />
+        <div className="overflow-x-auto col-span-2">
           <table className="min-w-full">
             <thead className="border-b">
               <tr>
@@ -56,24 +63,33 @@ export default function ShoppingCart() {
               </tr>
             </thead>
             <tbody className="p-5 text-left ">
-              {CartItems.map((items) => (
-                <tr className="border-b" key={items.id}>
-                  <td className="p-5 text-black">
-                    <Image
-                      src={items.image}
-                      alt="product image"
-                      className="rounded shadow"
-                      width={100}
-                      height={100}
-                    />
-                  </td>
-                  <td className="px-5 tableHeader">{items.price}</td>
-                  <td className="px-5 tableHeader">- {items.quantity} +</td>
-                  <td className="px-5 tableHeader">
-                    $ {items.quantity * items.price}{" "}
-                  </td>
-                </tr>
-              ))}
+              {/* {CartItems.map((items) => ( */}
+              <tr className="border-b">
+                <td className="p-5 text-black">
+                  <Image
+                    src={data.productimageUrl}
+                    alt="product image"
+                    className="rounded shadow"
+                    width={200}
+                    height={200}
+                  />
+                </td>
+                <td className="px-5 tableHeader">{32}</td>
+                <td className="px-5 tableHeader">
+                  <button onClick={() => setCount(count - 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#7F56D9' }}>
+                    <p className="text-white" style={{ fontSize: 20 }}>-</p>
+                  </button>
+                  {/* {items.quantity} */}
+                  {count}
+                  <button onClick={() => setCount(count + 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#74ed94' }}>
+                    <p className="text-white" style={{ fontSize: 20 }}>+</p>
+                  </button>
+                </td>
+                <td className="px-5 tableHeader">
+                  $ {500 * count}
+                </td>
+              </tr>
+              {/* ))} */}
             </tbody>
           </table>
           <div className="flex flex-row justify-between">
@@ -89,15 +105,15 @@ export default function ShoppingCart() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="col-span-1">
           <h1 className="text-center w-full my-4 font-bold tableHeader">Cart Totals</h1>
           <div>
             <div className="checkOut p-3">
-              <div className="flex flex-row justify-between p-2 my-5" style={{borderColor:"#071242",borderBottomWidth:1}}>
+              <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
                 <h2 className="tableHeader">Subtotals </h2>
                 <h2 className="tableHeader">$219.00</h2>
               </div>
-              <div className="flex flex-row justify-between p-2 my-5" style={{borderColor:"#071242",borderBottomWidth:1}}>
+              <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
                 <h2 className="tableHeader">Totals </h2>
                 <h2 className="tableHeader">$325.00</h2>
               </div>
@@ -121,11 +137,11 @@ export default function ShoppingCart() {
           </h1>
           <div className="checkOut p-3">
             <h2 className="tableHeader">For foregin countries</h2>
-            <div className="flex flex-row justify-between p-2 my-5" style={{borderColor:"#071242",borderBottomWidth:1}}>
+            <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
               <h2 className="tableHeader">Subtotals </h2>
               <h2 className="tableHeader">$219.00</h2>
             </div>
-            <div className="flex flex-row justify-between p-2 my-5 " style={{borderColor:"#071242",borderBottomWidth:1}}>
+            <div className="flex flex-row justify-between p-2 my-5 " style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
               <h2 className="tableHeader">Totals </h2>
               <h2 className="tableHeader">$325.00</h2>
             </div>
@@ -135,8 +151,14 @@ export default function ShoppingCart() {
               </p>
             </div>
             <div className="flex flex-row p-2">
-              <button className="align-center shipping px-8 py-2 ">
-                Calculate Shipping
+              <button onClick={() => { }} className="align-center shipping px-8 py-2 ">
+                <Link href={{
+                  pathname: '/Components/Shipping',
+                  query: {
+                    productimageUrl: data.productimageUrl,
+                    productName: data.productName
+                  }
+                }}><p> Calculate Shipping</p></Link>
               </button>
             </div>
           </div>

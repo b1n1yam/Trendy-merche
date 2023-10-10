@@ -1,9 +1,13 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../Components/Layout";
 import data from "../utils/data";
+
+//packages
+import ReactStars from "react-star-rating-component";
 
 export default function ProductScreen() {
   const { query } = useRouter();
@@ -12,39 +16,225 @@ export default function ProductScreen() {
   if (!product) return <div>{slug}</div>;
   return (
     <Layout>
-      <div>
+      {/* <div>
         <Link href="/">Back to product</Link>
-      </div>
-      <div className="grid md:grid-cols-4 md:gap-3">
-        <div className="md:col-span-2 px-3">
-          <Image src={product.image} alt={product.name} width={640} height={640} layout="responsive" ></Image>
+      </div> */}
+      <div style={{}}>
+        <div className="contactHeader" style={{ height: 150 }}>
+          <h1
+            className="text-black p-10 mx-20"
+            style={{
+              fontSize: 30,
+              fontWeight: "bold",
+              color: "#071242",
+              paddingLeft: 20,
+            }}
+          >
+            Product Details
+          </h1>
         </div>
-        <div>
-            <ui>
-                <li>
-                    <h1>{product.name}</h1>
-                </li>
-                <li>
-                    <h1>Category: {product.category}</h1>
-                </li>
-                <li>
-                    <h1>Brand: {product.brand}</h1>
-                </li>
-                <li>{product.rating}</li>
-            </ui>
+        <div className="grid md:grid-cols-5 md:gap-3">
+          <div className="col-span-1" />
+          <div className="md:col-span-4 px-3 flex-row">
+            <div className="grid md:grid-cols-6">
+              <div className="flex flex-col col-span-1">
+                <div className="p-5 m-5 shadow-md"><Image src={product.image} alt={product.name} width={70} height={50} layout="responsive" /></div>
+                <div className="p-5 m-5 shadow-md"><Image src={product.image} alt={product.name} width={70} height={50} layout="responsive" /></div>
+                <div className="p-5 m-5 shadow-md"><Image src={product.image} alt={product.name} width={70} height={50} layout="responsive" /></div>
+              </div>
+              <div className="flex flex-col col-span-2 mt-5 my-10">
+                <div className="p-10 shadow-md"><Image src={product.image} alt={product.name} width={70} height={80} layout="responsive" /></div>
+              </div>
+              <div className="flex flex-col col-span-2 pt-10 my-5">
+                <p className="font-bold text-black " style={{ fontSize: 20, marginLeft: 20 }}>Playwood arm chair</p>
+                <div className="mx-5 flex flex-row" >
+                  <ReactStars
+                    count={5}
+                    // onChange={ratingChanged}
+                    size={30}
+                    activeColor="#ffd700"
+                  />
+                  <p className="mx-1 text-black">(22)</p>
+                </div>
+                <div className="flex flex-row mt-5">
+                  <p className="text-black font-bold mx-5">$32.00</p>
+                  <p className="text-red-500 font-regular mx-5">$32.00</p>
+                </div>
+                <div className="flex flex-row mt-5">
+                  <p className="text-black font-bold mx-5">Color</p>
+                  {/* <p className="text-black font-regular mx-5">Black</p> */}
+                  <div className="flex flex-col" style={{ marginTop: -10 }}>
+                    <div className="mt-5 flex flex-row">
+                      <button
+                        className="bg-red-500 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50 }}
+                      />
+                      <button
+                        className="bg-gray-500 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50 }}
+                      />
+                      <button
+                        className="bg-blue-500 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50 }}
+                      />
+                      <button
+                        className="bg-pink-500 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50 }}
+                      />
+                    </div>
+                    <div className="mt-5 flex flex-row">
+                      <button
+                        className="bg-black-700 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50, background: 'black' }}
+                      />
+                      <button
+                        className="bg-sky-500 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50 }}
+                      />
+                      <button
+                        className="bg-green-500 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50 }}
+                      />
+                      <button
+                        className="bg-orange-500 mx-5"
+                        style={{ height: 40, width: 40, borderRadius: 50 }}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-5 mx-5">
+                  <p style={{ color: '#A9ACC6' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.</p>
+                </div>
+                <Link href={{
+                  pathname: '/Components/ShoppingCart',
+                  query: {
+                    productimageUrl: product.image,
+                    productName: product.name
+                  },
+                }}>
+                  <button className="flex flex-row mx-5 mt-10 border-gray-400 rounded-md py-5" style={{ borderWidth: 1 }}>
+                    <p className="text-black mx-10">Add To cart</p>
+                    {/* <Image
+                    src={'/images/heart.png'}
+                    height={30}
+                    width={30}
+                    alt="cart image"
+                  /> */}
+                  </button>
+                </Link>
+                <div className="flex flex-row mt-5">
+                  <p className="text-black font-bold mx-5">Categories</p>
+                  <p className="text-black font-regular mx-5">Cloth</p>
+                </div>
+                <div className="flex flex-row mt-5">
+                  <p className="text-black font-bold mx-5">Tags</p>
+                  <p className="text-black font-regular mx-5">Hoodies</p>
+                </div>
+                <div className="flex flex-row mt-5">
+                  <p className="text-black font-bold mx-5">Share</p>
+                  <p className="text-black font-regular mx-5">Hoodies</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="md:col-span-1" />
         </div>
-        <div>
-        <div className="card p-5">
-           <div className="mb-2 flex justify-between">
-            <div>Price</div>
-            <div>{product.price}</div>   
-           </div>
-           <div className="mb-2 flex justify-between">
-            <div>Status</div>
-            <div>{product.countInStock}</div>   
-           </div>
-           <button className="primary-button w-full">Add to cart</button>
+        <div className="grid md:grid-cols-5" style={{ background: '#F9F8FE' }}>
+          <div className="col-span-1" />
+          <div className="col-span-3">
+            <div className="flex pt-10 pb-2 col-span-3">
+              <button class="hover:bg-blue-700 underline font-regular py-2 px-10" style={{ color: '#151875' }}>
+                Description
+              </button>
+              <button class="hover:bg-blue-700 underline font-regular py-2 px-10" style={{ color: '#151875' }}>
+                Additional Info
+              </button>
+              <button class="hover:bg-blue-700 underline font-regular py-2 px-10" style={{ color: '#151875' }}>
+                Reviews
+              </button>
+              <button class="hover:bg-blue-700 underline font-regular py-2 px-10" style={{ color: '#151875' }}>
+                Video
+              </button>
+            </div>
+            <div className="">
+              <p style={{ color: '#151875', fontWeight: 700, fontSize: 20 }}>Varius tempor.</p>
+              <p style={{ color: '#151875', fontWeight: 300, fontSize: 15, opacity: 0.6, }}>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet.
+                Montes, mauris varius ac est bibendum. Scelerisque a, risus ac ante. Velit consectetur neque, elit, aliquet.
+                Non varius proin sed urna, egestas consequat laoreet diam tincidunt. Magna eget faucibus cras justo,
+                tortor sed donec tempus. Imperdiet consequat, quis diam arcu, nulla lobortis justo netus dis. Eu in
+                fringilla vulputate nunc nec. Dui, massa viverr .
+              </p>
+            </div>
+
+            <div className="my-5">
+              <p style={{ color: '#151875', fontWeight: 700, fontSize: 20 }}>More details.</p>
+              <p style={{ color: '#151875', fontWeight: 300, fontSize: 15, opacity: 0.6, paddingTop: 5 }}>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet.
+              </p>
+              <p style={{ color: '#151875', fontWeight: 300, fontSize: 15, opacity: 0.6, paddingTop: 5 }}>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet.
+              </p>
+              <p style={{ color: '#151875', fontWeight: 300, fontSize: 15, opacity: 0.6, paddingTop: 5 }}>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet.
+              </p>
+              <p style={{ color: '#151875', fontWeight: 300, fontSize: 15, opacity: 0.6, paddingTop: 5 }}>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet.
+              </p>
+              <p style={{ color: '#151875', fontWeight: 300, fontSize: 15, opacity: 0.6, paddingTop: 5 }}>
+                Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet.
+              </p>
+            </div>
+          </div>
         </div>
+        <div className="grid grid-cols-5 mt-10">
+          <div className="col-span-1" />
+          <div className="col-span-4">
+            <p style={{ color: '#151875', fontWeight: 700, fontSize: 24, marginBottom: 10 }}>Related Product</p>
+            <div className="flex flex-row">
+              <div className="my-5 mx-5">
+                <Image
+                  src={'/images/MenFashion.png'}
+                  width={150}
+                  height={200}
+                  alt="Product name"
+                />
+                <p className="text-black font-bold py-2"> Men Fashion</p>
+                <p className="text-black font-medium">$ 400</p>
+              </div>
+              <div className="my-5 mx-5">
+                <Image
+                  src={'/images/womenFashion.png'}
+                  width={150}
+                  height={200}
+                  alt="Product name"
+                />
+                <p className="text-black font-bold py-2"> Women Fashion</p>
+                <p className="text-black font-medium">$ 400</p>
+              </div>
+              <div className="my-5 mx-5">
+                <Image
+                  src={'/images/wolxDummy.png'}
+                  width={150}
+                  height={200}
+                  alt="Product name"
+                />
+                <p className="text-black font-bold py-2"> Delox Fashion</p>
+                <p className="text-black font-medium">$ 400</p>
+              </div>
+              <div className="my-5 mx-5">
+                <Image
+                  src={'/images/TopWall.png'}
+                  width={150}
+                  height={200}
+                  alt="Product name"
+                />
+                <p className="text-black font-bold py-2"> Top Wall Fashion</p>
+                <p className="text-black font-medium">$ 400</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </Layout>
