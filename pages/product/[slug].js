@@ -7,7 +7,7 @@ import Layout from "../Components/Layout";
 import data from "../utils/data";
 
 //packages
-import ReactStars from "react-star-rating-component";
+// import ReactStars from "react-star-rating-component";
 
 export default function ProductScreen() {
   const { query } = useRouter();
@@ -48,12 +48,12 @@ export default function ProductScreen() {
               <div className="flex flex-col col-span-2 pt-10 my-5">
                 <p className="font-bold text-black " style={{ fontSize: 20, marginLeft: 20 }}>Playwood arm chair</p>
                 <div className="mx-5 flex flex-row" >
-                  <ReactStars
+                  {/* <ReactStars
                     count={5}
                     // onChange={ratingChanged}
                     size={30}
                     activeColor="#ffd700"
-                  />
+                  /> */}
                   <p className="mx-1 text-black">(22)</p>
                 </div>
                 <div className="flex flex-row mt-5">
