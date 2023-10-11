@@ -82,7 +82,7 @@ export default function Shipping() {
           </div>
           <div>
             <button className="shipping py-2 px-5 mx-3">
-              <Link href="../Components/ShoppingCart">Continue Shipping</Link>
+              <Link href="../Components/ShoppingCart">Continue Shippings</Link>
             </button>
           </div>
         </div>
