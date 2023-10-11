@@ -12,10 +12,7 @@ export default function Contactus() {
           <div className='w-full m-5' style={{}}>
             <div>
               <h1 className='text-black p-5 size-20' style={{ fontSize: 30, fontWeight: 'bold', color: '#071242' }}>Information About us</h1>
-              <p className='text-black p-5'>Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum
-                We bring customers to our client using SOCIAL MEDIA MARKETING.
-                If you want to succeed in the world of branding, you need to stand out and know how to advertise your brand to the right audience on social media
-              </p>
+              <p className='text-black p-5'>Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum</p>
               <div className='bg-amber flex flex-row'>
                 <h1 className='rounded-xl p-3 m-3' style={{ backgroundColor: 'blue' }}></h1>
                 <h1 className='rounded-xl p-3 m-3' style={{ backgroundColor: 'purple' }}></h1>
