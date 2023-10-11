@@ -17,7 +17,8 @@ export default function LoginScreen() {
         </div>
         <div className="mb-4 mx-10">
           <label htmlFor='password' className='text-black my-3'>Password</label>
-          <input type="password" className="input w-full" id="password" autoFocus>
+          <input type=
+          "password" className="input w-full" id="password" autoFocus>
           </input>
         </div>
         <div className="">

@@ -151,19 +151,21 @@ export default function Homepage() {
                       </div>
                     )
                   })}
-                  <div
-                    style={{
-                      backgroundImage: `url(/images/yohanaLatest.png)`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      width: 170,
-                      height: 200,
-                      marginLeft: 50
-                    }}
-                  >
-                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
-                  </div>
+                  <Link href={'/containers/Main/ArtistProfile'}>
+                    <button
+                      style={{
+                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: 170,
+                        height: 200,
+                        marginLeft: 50
+                      }}
+                    >
+                      <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                    </button>
+                  </Link>
                 </div>
 
                 <div className="flex flex-row shadow-lg bg-white-100" style={{ height: 210, marginTop: 10 }}>
@@ -187,19 +189,21 @@ export default function Homepage() {
                       </div>
                     )
                   })}
-                  <div
-                    style={{
-                      backgroundImage: `url(/images/yohanaLatest.png)`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      width: 170,
-                      height: 200,
-                      marginLeft: 50
-                    }}
-                  >
-                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
-                  </div>
+                  <Link href={'/containers/Main/ArtistProfile'}>
+                    <button
+                      style={{
+                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: 170,
+                        height: 200,
+                        marginLeft: 50
+                      }}
+                    >
+                      <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                    </button>
+                  </Link>
                 </div>
 
 
@@ -224,19 +228,21 @@ export default function Homepage() {
                       </div>
                     )
                   })}
-                  <div
-                    style={{
-                      backgroundImage: `url(/images/yohanaLatest.png)`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      width: 170,
-                      height: 200,
-                      marginLeft: 50
-                    }}
-                  >
-                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
-                  </div>
+                  <Link href={'/containers/Main/ArtistProfile'}>
+                    <button
+                      style={{
+                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: 170,
+                        height: 200,
+                        marginLeft: 50
+                      }}
+                    >
+                      <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                    </button>
+                  </Link>
                 </div>
 
                 <div className="flex flex-row shadow-lg bg-white-100" style={{ height: 210, marginTop: 10 }}>
@@ -296,19 +302,21 @@ export default function Homepage() {
                       </div>
                     )
                   })}
-                  <div
-                    style={{
-                      backgroundImage: `url(/images/yohanaLatest.png)`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      width: 170,
-                      height: 200,
-                      marginLeft: 50
-                    }}
-                  >
-                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
-                  </div>
+                  <Link href={'/containers/Main/ArtistProfile'}>
+                    <button
+                      style={{
+                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: 170,
+                        height: 200,
+                        marginLeft: 50
+                      }}
+                    >
+                      <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                    </button>
+                  </Link>
                 </div>
 
                 <div className="flex flex-row shadow-lg bg-white-100" style={{ height: 210, marginTop: 10 }}>
@@ -332,19 +340,21 @@ export default function Homepage() {
                       </div>
                     )
                   })}
-                  <div
-                    style={{
-                      backgroundImage: `url(/images/yohanaLatest.png)`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      width: 170,
-                      height: 200,
-                      marginLeft: 50
-                    }}
-                  >
-                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 200, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
-                  </div>
+                  <Link href={'/containers/Main/ArtistProfile'}>
+                    <button
+                      style={{
+                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: 170,
+                        height: 200,
+                        marginLeft: 50
+                      }}
+                    >
+                      <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                    </button>
+                  </Link>
                 </div>
 
               </div>
