@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../../Components/Layout";
 import Image from "next/image";
 import Productitem from "../../Components/Productitem";
@@ -6,6 +6,8 @@ import data from "../../utils/data";
 import Link from "next/link";
 
 export default function Homepage() {
+  const [selectedArtist, setSelectedArtist] = useState('');
+  const [productFilteredBy, setproductFilteredBy] = useState('New Arrival');
   return (
     <Layout>
       <div className="mb-20  " style={{ background: '#F6F6F6' }}>
@@ -60,9 +62,11 @@ export default function Homepage() {
               <p className="text-black mb-2" style={{ color: '#151875', fontWeight: 700 }}>Filter</p>
               <div className=" shadow-sm flex flex-center flex-col  items-center py-10 overflow-scroll bg-white pb-10" style={{ maxHeight: 500, borderRadius: 20 }}>
 
-                {["Yohana", "Abel", "TeddyAfro", "Amleset", "Nebil", "Musse", "Yohana", "Abel", "TeddyAfro", "Amleset", "Nebil", "Musse"].map((item, index) => (
+                {["Yohana", "Abel", "TeddyAfro", "Life of Abel", "Nebil", "Musse", "Dani royal", "Awra", "Amleset Muche", "Amleset", "Bertemios", "Elshaday"].map((item, index) => (
                   // return (
-                  <button key={index} className="text-black flex-center py-2">{item}</button>
+                  <button onClick={() => setSelectedArtist(item)} key={index} className="text-black flex-center py-2" style={{ background: selectedArtist === item ? '#2F1AC4' : 'white', color: selectedArtist === item ? 'white' : 'black', minWidth: 200, borderRadius: 10 }}>
+                    {item}
+                  </button>
                   // )
                 ))}
               </div>
@@ -76,20 +80,17 @@ export default function Homepage() {
               <h1 className="flex item-center justify-center" style={{ color: '#151875', fontSize: 25, fontWeight: 'bold' }}>
                 Latest Products
               </h1>
-              {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Button
-              </button> */}
               <div className="flex justify-evenly">
-                <button class="hover:bg-blue-700 underline font-regular py-2 px-1" style={{ color: '#FB2E86' }}>
+                <button onClick={() => setproductFilteredBy('New Arrival')} class="hover:bg-blue-700  font-regular py-2 px-1" style={{ color: productFilteredBy === 'New Arrival' ? '#FB2E86' : '#151875', textDecoration: productFilteredBy === 'New Arrival' ? 'underline' : 'none' }}>
                   New Arrival
                 </button>
-                <button class="hover:bg-blue-700  font-regular py-2 px-1" style={{ color: '#151875' }}>
+                <button onClick={() => setproductFilteredBy('Best Seller')} class="hover:bg-blue-700  font-regular py-2 px-1" style={{ color: productFilteredBy === 'Best Seller' ? '#FB2E86' : '#151875', textDecoration: productFilteredBy === 'Best Seller' ? 'underline' : 'none' }}>
                   Best Seller
                 </button>
-                <button class="hover:bg-blue-700  font-regular py-2 px-1" style={{ color: '#151875' }}>
+                <button onClick={() => setproductFilteredBy('Featured')} class="hover:bg-blue-700  font-regular py-2 px-1" style={{ color: productFilteredBy === 'Featured' ? '#FB2E86' : '#151875', textDecoration: productFilteredBy === 'Featured' ? 'underline' : 'none' }}>
                   Featured
                 </button>
-                <button class="hover:bg-blue-700  font-regular py-2 px-1" style={{ color: '#151875' }}>
+                <button onClick={() => setproductFilteredBy('Special Offer')} class="hover:bg-blue-700  font-regular py-2 px-1" style={{ color: productFilteredBy === 'Special Offer' ? '#FB2E86' : '#151875', textDecoration: productFilteredBy === 'Special Offer' ? 'underline' : 'none' }}>
                   Special Offer
                 </button>
               </div>
@@ -188,7 +189,7 @@ export default function Homepage() {
                         {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
                       </div>
                     )
-                  })}
+                  })}selectedArtist
                   <Link href={'/containers/Main/ArtistProfile'}>
                     <button
                       style={{
@@ -374,7 +375,7 @@ export default function Homepage() {
             />
           </div>
           <div className="flex flex-col col-span-2 justify-center">
-            <div className=" w-full">
+            <div className="Are you an artist or influencer looking to sell merches w-full">
               <h1 className="mt-10" style={{ fontSize: 20, color: "#151875" }}>
                 Are you an artist or influencer looking to sell merches
               </h1>
@@ -402,33 +403,27 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-        <div
-          className="flex flex-col grid grid-cols-4 gap-5"
-          style={{ background: "#F6F7FB" }}
-        >
-          <div className="flex flex-col col-span-2 justify-center pl-8">
-            <div className=" w-full">
-              <h1 className="mt-10" style={{ fontSize: 20, color: "#151875" }}>
-                Are you an artist or influencer looking to sell merches
-              </h1>
-              <div className="flex flex-row">
-                <p className="text-left m-5" style={{ color: "#ACABC3" }}>quality support and help all the way </p>
-                <p className="m-5 mr-5" style={{ color: "#ACABC3" }}>
-                  Lorem ipsum
-                </p></div>
-              <div className="flex flex-row">
-                <p className="text-left m-5" style={{ color: "#ACABC3" }}>quality support and help all the way </p>
-                <p className="m-5 mr-5" style={{ color: "#ACABC3" }}>
-                  Lorem ipsum
-                </p></div>
-              {/* <Link href="/containers/Main/AllArtistPage"><p className="shipping py-2 pr-20 pl-5 my-3">Shop Now</p></Link> */}
-              <Link href="/containers/Main/AllArtistPage">
-                <p className="text-white" style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 40 }}>Shop Nows</p>
-              </Link>
-            </div>
+        <div className="flex flex-row w-full item-center justify-center py-10" style={{ background: '#F6F5FF' }}>
+          <div className="">
+            <h1 className="mt-10" style={{ fontSize: 20, color: "#151875" }}>
+              Are you an artist or influencer looking to sell merches
+            </h1>
+            <div className="flex flex-row">
+              <p className="text-left m-5" style={{ color: "#ACABC3" }}>quality support and help all the way </p>
+              <p className="m-5 mr-5" style={{ color: "#ACABC3" }}>
+                Lorem ipsum
+              </p></div>
+            <div className="flex flex-row">
+              <p className="text-left m-5" style={{ color: "#ACABC3" }}>quality support and help all the way </p>
+              <p className="m-5 mr-5" style={{ color: "#ACABC3" }}>
+                Lorem ipsum
+              </p></div>
+            <Link href="/containers/Main/AllArtistPage">
+              <p className="text-white" style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 40 }}>Shop Nows</p>
+            </Link>
 
           </div>
-          <div className="flex item-end justify-start  col-span-2">
+          <div>
             <Image
               src="/images/out2.png"
               alt="Picture of the author"
@@ -436,13 +431,12 @@ export default function Homepage() {
               height={400}
             />
           </div>
-
         </div>
         <div>
           <h1 className="flex item-center justify-center my-10" style={{ color: '#151875', fontSize: 25, fontWeight: 'bold' }}>
             Top Artist
           </h1>
-          <div className="flex flex-row px-10">
+          <div className="flex flex-row item-center justify-center px-10">
             <div className="">
               <Image
                 src="/images/out2.png"

@@ -19,11 +19,6 @@ export default function Productitem({ product }) {
           </Link>
         </div>
         <div className="flex flex-col items-center justify-center mt-5" style={{}}>
-          {/* <Link href={`/product/${product.slug}`}>
-      <h2 className="text-lg">
-         {product.name}
-        </h2>
-      </Link> */}
           <p className="mt-5 mb-5 text-red-600 group-hover:text-white" style={{ fontWeight: '600' }}>{product.brand}</p>
           <Image
             src={'/images/ProductIconicLabel.png'}

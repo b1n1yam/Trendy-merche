@@ -127,7 +127,7 @@ export default function ShoppingCart() {
                 className="flex flex-row p-2  text-center align-center"
               >
                 <button className="align-center w-full mx-3">
-                  <Link href='../Components/orderCompleted'>Proceed To Checkout</Link>
+                  <Link href='/containers/Main/PaymentPage'>Proceed To Checkout</Link>
                 </button>
               </div>
             </div>

@@ -2,14 +2,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../Components/Layout";
 import data from "../utils/data";
 
 //packages
-// import ReactStars from "react-star-rating-component";
+import ReactStars from "react-star-rating-component";
+import { Menu } from '@headlessui/react';
+
+
 
 export default function ProductScreen() {
+  const [selectedSize, setSelectedSize] = useState('XL')
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((x) => x.slug === slug);
@@ -48,21 +52,42 @@ export default function ProductScreen() {
               <div className="flex flex-col col-span-2 pt-10 my-5">
                 <p className="font-bold text-black " style={{ fontSize: 20, marginLeft: 20 }}>Playwood arm chair</p>
                 <div className="mx-5 flex flex-row" >
-                  {/* <ReactStars
+                  <ReactStars
                     count={5}
                     // onChange={ratingChanged}
                     size={30}
                     activeColor="#ffd700"
-                  /> */}
+                  />
                   <p className="mx-1 text-black">(22)</p>
                 </div>
                 <div className="flex flex-row mt-5">
-                  <p className="text-black font-bold mx-5">$32.00</p>
-                  <p className="text-red-500 font-regular mx-5">$32.00</p>
+                  <p className="text-black font-bold mx-5">Categories</p>
+                  <p className="text-black font-regular mx-5">Cloth</p>
                 </div>
                 <div className="flex flex-row mt-5">
+                  <p className="text-black font-bold mx-5">Tags</p>
+                  <p className="text-black font-regular mx-5">Hoodies</p>
+                </div>
+                <div className="flex flex-row mt-5">
+                  <p className="text-black font-bold mx-5" style={{ fontSize: 20 }}>Posted</p>
+                  <p className="text-black font-regular mx-5" style={{ fontSize: 15 }}>19 days ago</p>
+                </div>
+                <div className="flex flex-row mt-5">
+                  <p className="text-black mx-5 mt-1">Size</p>
+                  <div className="">
+                    <button onClick={() => setSelectedSize('SM')} className="mx-2 py-1 border border-black px-5 text-black rounded" style={{
+                      background: selectedSize === 'SM' ? 'blue' : 'white', color: selectedSize === 'SM' ? 'white' : 'black', borderColor: selectedSize === 'SM' ? 'white' : 'black'
+                    }}>SM</button>
+                    < button onClick={() => setSelectedSize('XL')} className="mx-2 py-1 border border-black px-5 text-black rounded" style={{ background: selectedSize === 'XL' ? 'blue' : 'white', color: selectedSize === 'XL' ? 'white' : 'black', borderColor: selectedSize === 'XL' ? 'white' : 'black' }} >XL</button>
+                    <button onClick={() => setSelectedSize('L')} className="mx-2 py-1 border border-black px-5 text-black rounded" style={{ background: selectedSize === 'L' ? 'blue' : 'white', color: selectedSize === 'L' ? 'white' : 'black', borderColor: selectedSize === 'L' ? 'white' : 'black' }} >L</button>
+                    <button onClick={() => setSelectedSize('XXL')} className="mx-2 py-1 border border-black px-5 text-black rounded" style={{ background: selectedSize === 'XXL' ? 'blue' : 'white', color: selectedSize === 'XXL' ? 'white' : 'black', borderColor: selectedSize === 'XXL' ? 'white' : 'black' }} >XXL</button>
+                  </div>
+                </div>
+                <div className="mt-5">
+                  <p className="text-black font-bold mx-5" style={{ fontSize: 30 }}>1,400 Birr</p>
+                </div>
+                {/* <div className="flex flex-row mt-5">
                   <p className="text-black font-bold mx-5">Color</p>
-                  {/* <p className="text-black font-regular mx-5">Black</p> */}
                   <div className="flex flex-col" style={{ marginTop: -10 }}>
                     <div className="mt-5 flex flex-row">
                       <button
@@ -101,7 +126,8 @@ export default function ProductScreen() {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
+
                 <div className="mt-5 mx-5">
                   <p style={{ color: '#A9ACC6' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.</p>
                 </div>
@@ -122,14 +148,7 @@ export default function ProductScreen() {
                   /> */}
                   </button>
                 </Link>
-                <div className="flex flex-row mt-5">
-                  <p className="text-black font-bold mx-5">Categories</p>
-                  <p className="text-black font-regular mx-5">Cloth</p>
-                </div>
-                <div className="flex flex-row mt-5">
-                  <p className="text-black font-bold mx-5">Tags</p>
-                  <p className="text-black font-regular mx-5">Hoodies</p>
-                </div>
+
                 <div className="flex flex-row mt-5">
                   <p className="text-black font-bold mx-5">Share</p>
                   <p className="text-black font-regular mx-5">Hoodies</p>
@@ -237,6 +256,6 @@ export default function ProductScreen() {
 
         </div>
       </div>
-    </Layout>
+    </Layout >
   );
 }

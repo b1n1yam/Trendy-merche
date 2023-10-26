@@ -2,7 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/router";
 export default function Layout({ children }) {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -47,7 +49,6 @@ export default function Layout({ children }) {
           <nav className="flex h-10 items-center px-10 py-8 justify-between ">
             <div className="flex flex-row justify-around">
               <Link href="/">
-                {/* <a className="text-lg font-bold text-black">Trendy Merches</a> */}
                 <Image
                   alt={'Trendy Merches Logo'}
                   src={'/images/Trendy Merches.png'}
@@ -58,23 +59,23 @@ export default function Layout({ children }) {
               </Link>
               <div className="px-10 hidden md:block">
                 <Link href="/containers/Main/Homepage">
-                  <a className="text-md px-6 text-black">Home</a>
+                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Home</a>
                 </Link>
 
                 <Link href="/containers/Main/AllArtistPage">
-                  <a className="text-md px-6 text-black">Product</a>
+                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/AllArtistPage" ? "red" : "black" }} >Product</a>
                 </Link>
-                <Link href="/">
-                  <a className="text-md px-6 text-black">Blog</a>
-                </Link>
+                {/* <Link href="/">
+                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Blog</a>
+                </Link> */}
                 <Link href="/Components/Shipping">
-                  <a className="text-md px-6 text-black">Shop</a>
+                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Shipping" ? "red" : "black" }}>Shop</a>
                 </Link>
                 <Link href="/Components/Contactus">
-                  <a className="text-md px-6 text-black">Contact</a>
+                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Contactus" ? "red" : "black" }}>Contact</a>
                 </Link>
                 <Link href="../Components/Aboutus">
-                  <a className="text-md px-6 text-black">About</a>
+                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Aboutus" ? "red" : "black" }}>About</a>
                 </Link>
               </div>
             </div>

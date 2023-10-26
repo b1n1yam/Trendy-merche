@@ -80,11 +80,6 @@ export default function Shipping() {
               placeholder="Postal Code"
             />
           </div>
-          <div>
-            <button className="shipping py-2 px-5 mx-3">
-              <Link href="../Components/ShoppingCart">Continue Shippings</Link>
-            </button>
-          </div>
         </div>
         <div>
 
@@ -102,16 +97,15 @@ export default function Shipping() {
             </div>
             <div className="flex flex-row w-full justify-between px-5">
               <div>
-                <h3 className="tableHeader">{data?.productName}</h3>
-                <h2 className="tableHeader">Color: Red</h2>
-                <h2 className="tableHeader">Size :XL</h2>
+                <h3 className="tableHeader text-black">{data?.productName}</h3>
+                <h2 className="tableHeader">Size :  XL</h2>
               </div>
-              <div
+              {/* <div
                 className="justify-center tableHeader"
-                style={{ marginRight: 6 }}
+                style={{}}
               >
                 $32.00
-              </div>
+              </div> */}
             </div>
           </div>
           {/* <div
@@ -163,7 +157,7 @@ export default function Shipping() {
               className="flex flex-row p-2  text-center align-center"
             >
               <button className="align-center w-full mx-3">
-                Proceed To Checkout
+                <Link href='/containers/Main/PaymentPage'>Proceed To Checkout</Link>
               </button>
             </div>
           </div>
