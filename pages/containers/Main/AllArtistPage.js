@@ -9,7 +9,7 @@ export default function AllArtistPage() {
     return (
         <Layout>
             <div style={{ flex: 1 }}>
-                <div className="contactHeader" style={{ height: 150 }}>
+                <div className="contactHeader" style={{ minHeight: 150 }}>
                     <h1
                         className="text-black p-10 mx-20"
                         style={{
@@ -160,28 +160,28 @@ export default function AllArtistPage() {
                     </div>
 
 
-                    <div className="col-span-3 px-3 flex-row mt-10">
-                        <div className=" flex flex-row mt-10">
+                    <div className="col-span-1 md:col-span-3 px-3 flex-row mt-10">
+                        <div className=" flex flex-col md:flex-row mt-10">
                             {data.products.map((product) => (
                                 <Productitem product={product} key={product.slug}></Productitem>
                             ))}
                         </div>
-                        <div className=" flex flex-row mt-10">
+                        <div className=" flex flex-col md:flex-row mt-10">
                             {data.products.map((product) => (
                                 <Productitem product={product} key={product.slug}></Productitem>
                             ))}
                         </div>
-                        <div className=" flex flex-row mt-10">
+                        <div className=" flex flex-col md:flex-row mt-10">
                             {data.products.map((product) => (
                                 <Productitem product={product} key={product.slug}></Productitem>
                             ))}
                         </div>
-                        <div className=" flex flex-row mt-10">
+                        <div className=" flex flex-col md:flex-row mt-10">
                             {data.products.map((product) => (
                                 <Productitem product={product} key={product.slug}></Productitem>
                             ))}
                         </div>
-                        <div className=" flex flex-row mt-10">
+                        <div className=" flex flex-col md:flex-row mt-10">
                             {data.products.map((product) => (
                                 <Productitem product={product} key={product.slug}></Productitem>
                             ))}

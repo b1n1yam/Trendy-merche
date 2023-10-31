@@ -31,7 +31,7 @@ export default function ArtistPage() {
                     <div className="md:col-span-1" />
 
                 </div>
-                <div className="grid md:grid-cols-5 md:gap-3">
+                <div className="mx-5 md:mx-0 md:grid md:grid-cols-5 md:gap-3">
                     <div className="col-span-1" />
                     <div className="col-span-1 flex flex-col">
                         <p className="font-bold underline " style={{ color: '#151875', fontSize: 20 }}>Artist Types</p>
@@ -160,148 +160,163 @@ export default function ArtistPage() {
                     </div>
 
 
-                    <div className="col-span-2 px-3 flex-row mt-10">
-                        <div className="flex flex-row shadow-lg bg-white-100 mt-10" style={{ height: 210, marginTop: 10, borderStartStartRadius: 30 }}>
-                            {[1, 2, 3].map((item, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        style={{
-                                            backgroundImage: `url(/images/hoodies/Printed-Hoodie-Black-Front.jpg)`,
-                                            backgroundPosition: "center",
-                                            backgroundSize: "cover",
-                                            backgroundRepeat: "no-repeat",
-                                            width: 120,
-                                            height: 100,
-                                            marginLeft: 10,
-                                            marginTop: 50,
-                                            marginLeft: 50
-                                        }}
-                                    >
-                                        {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
-                                    </div>
-                                )
-                            })}
-                            <div
-                                style={{
-                                    backgroundImage: `url(/images/yohanaLatest.png)`,
-                                    backgroundPosition: "center",
-                                    backgroundSize: "cover",
-                                    backgroundRepeat: "no-repeat",
-                                    width: 170,
-                                    height: 190,
-                                    marginLeft: 50
-                                }}
-                            >
-                                <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                    <div className="md:col-span-2 px-3 flex-row mt-10">
+                        <div className="flex flex-col-reverse md:flex-row shadow-lg bg-white-100 mt-10" style={{ minHeight: 210, marginTop: 10, borderStartStartRadius: 30, width: '100%' }}>
+                            <div className="flex flex-row overflow-scroll">
+                                {[1, 2, 3,].map((item, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            style={{
+                                                backgroundImage: `url(/images/hoodies/Printed-Hoodie-Black-Front.jpg)`,
+                                                backgroundPosition: "center",
+                                                backgroundSize: "cover",
+                                                backgroundRepeat: "no-repeat",
+                                                minWidth: 120,
+                                                height: 100,
+                                                marginLeft: 10,
+                                                marginTop: 50,
+                                                marginLeft: 50
+                                            }}
+                                        >
+                                            {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
+                                        </div>
+                                    )
+                                })}
                             </div>
+                            <Link href={'/containers/Main/ArtistProfile'}>
+                                <div
+                                    style={{
+                                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                                        backgroundPosition: "center",
+                                        backgroundSize: "cover",
+                                        backgroundRepeat: "no-repeat",
+                                        width: 170,
+                                        height: 190,
+                                        marginLeft: 50
+                                    }}
+                                >
+                                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                                </div>
+                            </Link>
                         </div>
-                        <div className="flex flex-row shadow-lg bg-white-100 mt-30" style={{ height: 210, marginTop: 50, borderStartStartRadius: 30 }}>
-                            {[1, 2, 3].map((item, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        className="shadow-lg"
-                                        style={{
-                                            backgroundImage: `url(/images/hoodies/hotHoodies.png)`,
-                                            backgroundPosition: "center",
-                                            backgroundSize: "cover",
-                                            backgroundRepeat: "no-repeat",
-                                            width: 120,
-                                            height: 100,
-                                            marginLeft: 10,
-                                            marginTop: 50,
-                                            marginLeft: 50,
-                                            elevation: 5
-                                        }}
-                                    >
-                                        {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
-                                    </div>
-                                )
-                            })}
-                            <div
-                                style={{
-                                    backgroundImage: `url(/images/yohanaLatest.png)`,
-                                    backgroundPosition: "center",
-                                    backgroundSize: "cover",
-                                    backgroundRepeat: "no-repeat",
-                                    width: 170,
-                                    height: 190,
-                                    marginLeft: 50
-                                }}
-                            >
-                                <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+
+                        <div className="flex flex-col-reverse md:flex-row shadow-lg bg-white-100 mt-10" style={{ minHeight: 210, marginTop: 10, borderStartStartRadius: 30, width: '100%' }}>
+                            <div className="flex flex-row overflow-scroll">
+                                {[1, 2, 3,].map((item, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            style={{
+                                                backgroundImage: `url(/images/hoodies/Printed-Hoodie-Black-Front.jpg)`,
+                                                backgroundPosition: "center",
+                                                backgroundSize: "cover",
+                                                backgroundRepeat: "no-repeat",
+                                                minWidth: 120,
+                                                height: 100,
+                                                marginLeft: 10,
+                                                marginTop: 50,
+                                                marginLeft: 50
+                                            }}
+                                        >
+                                            {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
+                                        </div>
+                                    )
+                                })}
                             </div>
+                            <Link href={'/containers/Main/ArtistProfile'}>
+                                <div
+                                    style={{
+                                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                                        backgroundPosition: "center",
+                                        backgroundSize: "cover",
+                                        backgroundRepeat: "no-repeat",
+                                        width: 170,
+                                        height: 190,
+                                        marginLeft: 50
+                                    }}
+                                >
+                                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                                </div>
+                            </Link>
                         </div>
-                        <div className="flex flex-row shadow-lg bg-white-100 mt-30" style={{ height: 210, marginTop: 50, borderStartStartRadius: 30 }}>
-                            {[1, 2, 3].map((item, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        style={{
-                                            backgroundImage: `url(/images/hoodies/crew-neck-maroo.jpg)`,
-                                            backgroundPosition: "center",
-                                            backgroundSize: "cover",
-                                            backgroundRepeat: "no-repeat",
-                                            width: 120,
-                                            height: 100,
-                                            marginLeft: 10,
-                                            marginTop: 50,
-                                            marginLeft: 50
-                                        }}
-                                    >
-                                        {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
-                                    </div>
-                                )
-                            })}
-                            <div
-                                style={{
-                                    backgroundImage: `url(/images/yohanaLatest.png)`,
-                                    backgroundPosition: "center",
-                                    backgroundSize: "cover",
-                                    backgroundRepeat: "no-repeat",
-                                    width: 170,
-                                    height: 190,
-                                    marginLeft: 50
-                                }}
-                            >
-                                <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                        <div className="flex flex-col-reverse md:flex-row shadow-lg bg-white-100 mt-10" style={{ minHeight: 210, marginTop: 10, borderStartStartRadius: 30, width: '100%' }}>
+                            <div className="flex flex-row overflow-scroll">
+                                {[1, 2, 3,].map((item, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            style={{
+                                                backgroundImage: `url(/images/hoodies/Printed-Hoodie-Black-Front.jpg)`,
+                                                backgroundPosition: "center",
+                                                backgroundSize: "cover",
+                                                backgroundRepeat: "no-repeat",
+                                                minWidth: 120,
+                                                height: 100,
+                                                marginLeft: 10,
+                                                marginTop: 50,
+                                                marginLeft: 50
+                                            }}
+                                        >
+                                            {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
+                                        </div>
+                                    )
+                                })}
                             </div>
+                            <Link href={'/containers/Main/ArtistProfile'}>
+                                <div
+                                    style={{
+                                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                                        backgroundPosition: "center",
+                                        backgroundSize: "cover",
+                                        backgroundRepeat: "no-repeat",
+                                        width: 170,
+                                        height: 190,
+                                        marginLeft: 50
+                                    }}
+                                >
+                                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                                </div>
+                            </Link>
                         </div>
-                        <div className="flex flex-row shadow-lg bg-white-100 mt-30" style={{ height: 210, marginTop: 50, borderStartStartRadius: 30 }}>
-                            {[1, 2, 3].map((item, index) => {
-                                return (
-                                    <div
-                                        key={index}
-                                        style={{
-                                            backgroundImage: `url(/images/hoodies/Printed-Hoodie-Black-Front.jpg)`,
-                                            backgroundPosition: "center",
-                                            backgroundSize: "cover",
-                                            backgroundRepeat: "no-repeat",
-                                            width: 120,
-                                            height: 100,
-                                            marginLeft: 10,
-                                            marginTop: 50,
-                                            marginLeft: 50
-                                        }}
-                                    >
-                                        {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
-                                    </div>
-                                )
-                            })}
-                            <div
-                                style={{
-                                    backgroundImage: `url(/images/yohanaLatest.png)`,
-                                    backgroundPosition: "center",
-                                    backgroundSize: "cover",
-                                    backgroundRepeat: "no-repeat",
-                                    width: 170,
-                                    height: 190,
-                                    marginLeft: 50
-                                }}
-                            >
-                                <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                        <div className="flex flex-col-reverse md:flex-row shadow-lg bg-white-100 mt-10" style={{ minHeight: 210, marginTop: 10, borderStartStartRadius: 30, width: '100%' }}>
+                            <div className="flex flex-row overflow-scroll">
+                                {[1, 2, 3,].map((item, index) => {
+                                    return (
+                                        <div
+                                            key={index}
+                                            style={{
+                                                backgroundImage: `url(/images/hoodies/Printed-Hoodie-Black-Front.jpg)`,
+                                                backgroundPosition: "center",
+                                                backgroundSize: "cover",
+                                                backgroundRepeat: "no-repeat",
+                                                minWidth: 120,
+                                                height: 100,
+                                                marginLeft: 10,
+                                                marginTop: 50,
+                                                marginLeft: 50
+                                            }}
+                                        >
+                                            {index === 0 ? <div className=" p-1" style={{ background: '#FB2E86', width: 100, borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 80, marginLeft: 20 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 30 }}>New</p></div> : null}
+                                        </div>
+                                    )
+                                })}
                             </div>
+                            <Link href={'/containers/Main/ArtistProfile'}>
+                                <div
+                                    style={{
+                                        backgroundImage: `url(/images/yohanaLatest.png)`,
+                                        backgroundPosition: "center",
+                                        backgroundSize: "cover",
+                                        backgroundRepeat: "no-repeat",
+                                        width: 170,
+                                        height: 190,
+                                        marginLeft: 50
+                                    }}
+                                >
+                                    <div className=" p-1" style={{ background: '#FB2E86', borderTopLeftRadius: 20, justifyContent: 'center', alignSelf: 'flex-end', marginTop: 180 }}><p className="text-white" style={{ alignSelf: 'center', marginLeft: 50 }}>Yohana</p></div>
+                                </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="md:col-span-1" />

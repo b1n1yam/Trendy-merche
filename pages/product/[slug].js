@@ -5,19 +5,29 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import Layout from "../Components/Layout";
 import data from "../utils/data";
+import useCartStore from "../store/useStore";
 
+//modal
+import { useLoginModal } from "../store/useStore";
 //packages
 import ReactStars from "react-star-rating-component";
 import { Menu } from '@headlessui/react';
 
+// Get a cookie
+import { getCookies, setCookie, getCookie } from 'cookies-next';
 
 
-export default function ProductScreen() {
+
+export default function ProductScreens() {
+  const { isOpen, onOpen, onClose } = useLoginModal();
+  const { add } = useCartStore();
+  const Cookiesdata = getCookie('userInfo');
+  // console.log('Cookies ', Cookiesdata)
   const [selectedSize, setSelectedSize] = useState('XL')
   const { query } = useRouter();
   const { slug } = query;
-  const product = data.products.find((x) => x.slug === slug);
-  if (!product) return <div>{slug}</div>;
+  // const product = data.products.find((x) => x.slug === slug);
+  // if (!product) return <div>{slug}</div>;
   return (
     <Layout>
       {/* <div>
@@ -37,17 +47,17 @@ export default function ProductScreen() {
             Product Details
           </h1>
         </div>
-        <div className="grid md:grid-cols-5 md:gap-3">
-          <div className="col-span-1" />
+        <div className="md:grid md:grid-cols-5 md:gap-3">
+          <div className="md:col-span-1" />
           <div className="md:col-span-4 px-3 flex-row">
-            <div className="grid md:grid-cols-6">
-              <div className="flex flex-col col-span-1">
-                <div className="p-5 m-5 shadow-md"><Image src={product.image} alt={product.name} width={70} height={50} layout="responsive" /></div>
-                <div className="p-5 m-5 shadow-md"><Image src={product.image} alt={product.name} width={70} height={50} layout="responsive" /></div>
-                <div className="p-5 m-5 shadow-md"><Image src={product.image} alt={product.name} width={70} height={50} layout="responsive" /></div>
+            <div className="flex flex-row md:flex-col-reverse grid md:grid-cols-6">
+              <div className="flex flex-row md:flex-col md:col-span-1 hidden md:block">
+                <div className="p-5 m-5 shadow-md"><Image src={slug} alt={product.name} width={70} height={50} layout="responsive" /></div>
+                <div className="p-5 m-5 shadow-md"><Image src={slug} alt={product.name} width={70} height={50} layout="responsive" /></div>
+                <div className="p-5 m-5 shadow-md"><Image src={slug} alt={product.name} width={70} height={50} layout="responsive" /></div>
               </div>
               <div className="flex flex-col col-span-2 mt-5 my-10">
-                <div className="p-10 shadow-md"><Image src={product.image} alt={product.name} width={70} height={80} layout="responsive" /></div>
+                <div className="p-10 shadow-md"><Image src={slug} alt={product.name} width={70} height={80} layout="responsive" /></div>
               </div>
               <div className="flex flex-col col-span-2 pt-10 my-5">
                 <p className="font-bold text-black " style={{ fontSize: 20, marginLeft: 20 }}>Playwood arm chair</p>
@@ -74,7 +84,7 @@ export default function ProductScreen() {
                 </div>
                 <div className="flex flex-row mt-5">
                   <p className="text-black mx-5 mt-1">Size</p>
-                  <div className="">
+                  <div className="grid grid-cols-4">
                     <button onClick={() => setSelectedSize('SM')} className="mx-2 py-1 border border-black px-5 text-black rounded" style={{
                       background: selectedSize === 'SM' ? 'blue' : 'white', color: selectedSize === 'SM' ? 'white' : 'black', borderColor: selectedSize === 'SM' ? 'white' : 'black'
                     }}>SM</button>
@@ -131,25 +141,35 @@ export default function ProductScreen() {
                 <div className="mt-5 mx-5">
                   <p style={{ color: '#A9ACC6' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.</p>
                 </div>
-                <Link href={{
+                {/* <Link href={{
                   pathname: '/Components/ShoppingCart',
                   query: {
                     productimageUrl: product.image,
                     productName: product.name
                   },
-                }}>
-                  <button className="flex flex-row mx-5 mt-10 border-gray-400 rounded-md py-5" style={{ borderWidth: 1 }}>
-                    <p className="text-black mx-10">Add To cart</p>
-                    {/* <Image
+                }}> */}
+                <button
+                  //  onClick={() => add()} 
+                  onClick={() => {
+                    if (Cookiesdata !== '') {
+                      add()
+                    } {
+                      onOpen()
+                    }
+                  }}
+
+                  className="flex flex-row mx-5 my-8 md:mt-10 border-gray-400 rounded-md py-5" style={{ borderWidth: 1 }}>
+                  <p className="text-black mx-10">Add To cart</p>
+                  {/* <Image
                     src={'/images/heart.png'}
                     height={30}
                     width={30}
                     alt="cart image"
                   /> */}
-                  </button>
-                </Link>
+                </button>
+                {/* </Link> */}
 
-                <div className="flex flex-row mt-5">
+                <div className="hidden md:block flex flex-row mt-5">
                   <p className="text-black font-bold mx-5">Share</p>
                   <p className="text-black font-regular mx-5">Hoodies</p>
                 </div>
@@ -158,7 +178,7 @@ export default function ProductScreen() {
           </div>
           <div className="md:col-span-1" />
         </div>
-        <div className="grid md:grid-cols-5" style={{ background: '#F9F8FE' }}>
+        <div className="flex  hidden md:block md:grid md:grid-cols-5" style={{ background: '#F9F8FE' }}>
           <div className="col-span-1" />
           <div className="col-span-3">
             <div className="flex pt-10 pb-2 col-span-3">
@@ -210,7 +230,7 @@ export default function ProductScreen() {
           <div className="col-span-1" />
           <div className="col-span-4">
             <p style={{ color: '#151875', fontWeight: 700, fontSize: 24, marginBottom: 10 }}>Related Product</p>
-            <div className="flex flex-row">
+            <div className="flex flex-col md:flex-row">
               <div className="my-5 mx-5">
                 <Image
                   src={'/images/MenFashion.png'}

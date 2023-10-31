@@ -11,8 +11,8 @@ export default function ArtistProfile() {
             <div style={{ flex: 1 }}>
                 <div className="flex flex-col">
                     <Image src={'/images/ArtistHome.png'} height={700} width={2000} alt="ArtistProfilePage" />
-                    <div className="flex flex-row grid grid-cols-2">
-                        <div className="col-span-1"
+                    <div className="flex flex-col md:flex-row md:grid md:grid-cols-2">
+                        <div className="hidden md:block md:col-span-1"
                             style={{
                                 // backgroundImage: ('/images/Rectangle.png'),
                                 // height: '1000',
@@ -23,7 +23,7 @@ export default function ArtistProfile() {
                                 backgroundPosition: "center",
                                 backgroundSize: "cover",
                                 backgroundRepeat: "no-repeat",
-                                width: 1000,
+                                // width: 1000,
                                 height: 700,
                                 justifyContent: 'center',
                                 alignItems: 'center',
@@ -39,22 +39,20 @@ export default function ArtistProfile() {
                         <div className="col-span-1" style={{ marginTop: 0 }}>
                             <Image src={'/images/ArtistHome2.png'} height={700} width={700} alt="ArtistProfilePage" />
                         </div>
-                        <div className="grid md:grid-cols-6 md:gap-3">
-                            <div className="col-span-2" />
-
-
-                            <div className="col-span-3 px-3 flex-row mt-10">
-                                <div className=" flex flex-row mt-10">
+                        <div className="md:grid md:grid-cols-6 md:gap-3">
+                            <div className="md:col-span-2" />
+                            <div className="md:col-span-3 px-3 md:flex-row mt-10">
+                                <div className="flex flex-col md:flex-row md:mt-10 item-center px-8">
                                     {data.products.map((product) => (
                                         <Productitem product={product} key={product.slug}></Productitem>
                                     ))}
                                 </div>
-                                <div className=" flex flex-row mt-10">
+                                <div className="flex flex-col md:flex-row mt-10 item-center px-8">
                                     {data.products.map((product) => (
                                         <Productitem product={product} key={product.slug}></Productitem>
                                     ))}
                                 </div>
-                                <div className=" flex flex-row mt-10">
+                                <div className="flex flex-col md:flex-row mt-10 item-center px-8">
                                     {data.products.map((product) => (
                                         <Productitem product={product} key={product.slug}></Productitem>
                                     ))}

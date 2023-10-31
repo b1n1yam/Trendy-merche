@@ -1,10 +1,49 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+
+//state
+import useCartStore from "../store/useStore";
+import { useLoginModal } from "../store/useStore";
+import { useRegisterModal } from "../store/useStore";
+import { CookiesProvider } from "react-cookie"
+
+//component
+import Button from "./Button";
+import Heading from "./Heading";
+import Input from "./Input";
+import LoginModal from "./Modal/loginModal";
+import RegisterModal from "./Modal/registerModal";
+
+//package
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm
+} from "react-hook-form";
+// import Button from "../../Components/Button";
+import { IoMdClose } from "react-icons/io";
+import { getCookies, setCookie, getCookie, deleteCookie } from 'cookies-next';
+
+//Assets
+import Images from "../Images";
+
 export default function Layout({ children }) {
+  const Cookiesdata = getCookie('userInfo');
+  // console.log('Cookiesdata ', Cookiesdata);
   const router = useRouter();
+  const { cart } = useCartStore();
+  const { isOpen, onOpen, onClose } = useLoginModal();
+  const { isRegisterOpen, onRegisterOpen, onRegisterClose } = useRegisterModal();
+  const [isCategoriyopen, setIsCategoryOpen] = useState(false);
+  const [isCustomerCoreopen, setIsCustomerCoreOpen] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false);
+  const [isPageopen, setIsPageOpen] = useState(false);
+  const handleClose = () => {
+    onClose()
+  }
   return (
     <>
       <Head>
@@ -16,34 +55,53 @@ export default function Layout({ children }) {
       >
         <header>
           <nav className="flex h-11 items-center px-4 justify-between topnav">
-            <div className="justify-around flex flx-row mx-10">
-              <div className="px-5">
-                <Link href="/" className="px-5">
+            <div className="flex flex-col  md:flex-row sm:flex-row md:mx-10">
+              <div className="md:px-5">
+                <Link href="/" className="md:px-5">
                   <a className="text-md">trendymerches@gmail.com</a>
                 </Link>
               </div>
-              <div className="px-5">
+              <div className="md:px-5">
                 <Link href="/" className="px-5">
                   <a className="text-md">(251)11893456</a>
                 </Link>
               </div>
             </div>
-            <div className="hidden md:block">
-              <Link href="/cart">
+            {isOpen ? <LoginModal /> : null}
+            {isRegisterOpen ? <RegisterModal /> : null}
+            <div className="md:flex md:flex-row hidden  md:block ">
+
+              <div>
+                <Link href="/cart">
+                  <a className="p-2">English</a>
+                </Link>
+              </div>
+              <div>
+                <Link href="/login">
+                  <a className="p-2">Birr</a>
+                </Link>
+              </div>
+              <div>
+                {/* <Link href="/login">
+                  <a className="p-2">Login</a>
+                </Link> */}
+                {Cookiesdata === '' ? <button onClick={() => { onOpen() }}>Login</button> : <button onClick={() => { deleteCookie('userInfo') }} className="text-red-700 font-bold">Logout</button>}
+              </div>
+              <div>
+                {/* <Link href="/cart"> */}
                 <a className="p-2">English</a>
-              </Link>
-              <Link href="/login">
-                <a className="p-2">Birr</a>
-              </Link>
-              <Link href="/login">
-                <a className="p-2">Login</a>
-              </Link>
-              <Link href="/login">
+                {/* </Link> */}
+              </div>
+              <div>
+                {/* <Link href="/login"> */}
                 <a className="p-2">Wishlist</a>
-              </Link>
-              <Link href="/login">
-                <a className="p-2">Cart</a>
-              </Link>
+                {/* </Link> */}
+              </div>
+              <div className="justify-around flex ">
+                <a className="mx-5">Cart</a>
+                <p>{cart}</p>
+              </div>
+
             </div>
           </nav>
           <nav className="flex h-10 items-center px-10 py-8 justify-between ">
@@ -57,6 +115,7 @@ export default function Layout({ children }) {
 
                 />
               </Link>
+
               <div className="px-10 hidden md:block">
                 <Link href="/containers/Main/Homepage">
                   <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Home</a>
@@ -79,6 +138,20 @@ export default function Layout({ children }) {
                 </Link>
               </div>
             </div>
+            <div className="block md:hidden">
+              <Link href="/">
+                <button onClick={() => setIsMenuActive(!isMenuActive)} style={{ background: '#FB2E86', borderRadius: 100, padding: 5, justifyContent: 'center', alignItems: 'center' }}>
+                  <Image src={Images.menu}
+                    alt="Menu Icon"
+                    height={30}
+                    width={30}
+                    objectFit="contain"
+                  />
+                </button>
+              </Link>
+            </div>
+
+
             <div className="border hidden lg:block">
               <input placeholder="Search your Favourite" />
               <Link href="/cart">
@@ -89,9 +162,54 @@ export default function Layout({ children }) {
             </div>
           </nav>
         </header>
-        <main className="">{children}</main>
+
+        <main>
+
+          {isMenuActive ? <div style={{ minHeight: 200, background: '#F6F6F6', marginTop: 20 }} className="block md:hidden">
+            <div className="flex flex-col md:flex-row">
+
+              <div className="hover:bg-sky-700 my-5 w-full">
+                <Link href="/cart">
+                  <a className="p-2 text-black font-bold my-3 hover:bg-red-500 hover:text-white">English</a>
+                </Link>
+              </div>
+              <div className="my-5">
+                <Link href="/login">
+                  <a className="p-2 text-black font-bold my-3">Birr</a>
+                </Link>
+              </div>
+              <div className="my-5">
+                <Link href="/login">
+                  <a className="p-2 text-black font-bold my-3">Login</a>
+                </Link>
+                {/* <button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
+                  Save changes
+                </button> */}
+              </div>
+              <div className="my-5">
+                {/* <Link href="/cart"> */}
+                <a className="p-2 text-black font-bold my-3">English</a>
+                {/* </Link> */}
+              </div>
+              <div className="my-5">
+                {/* <Link href="/login"> */}
+                <a className="p-2 text-black font-bold my-3">Wishlist</a>
+                {/* </Link> */}
+              </div>
+              <div className="flex flex-row">
+                <a className="mx-2  text-black font-bold">Cart</a>
+                <p className="text-black font-bold">{cart}</p>
+              </div>
+
+            </div>
+          </div> : null}
+          <CookiesProvider>
+            {children}
+          </CookiesProvider>
+        </main>
+
         <footer className="flex  w-full  shadow-inner mt-10 ">
-          <div className="footer w-full flex flex-row justify-around p-5">
+          <div className="footer w-full md:flex flex-row justify-around p-5">
             <div>
               <h1 className="text-black font-bold" style={{ fontSize: 25 }}>
                 Trendy
@@ -100,9 +218,9 @@ export default function Layout({ children }) {
                 {" "}
                 Merches
               </h1>
-              <div className="mt-5 mb-5">
-                <input placeholder="Enter Email Address" />
-                <Link href="/cart">
+              <div className="mt-5 mb-5 md:flex flex-row">
+                <div className="mb-5 md:mt-0"><input placeholder="Enter Email Address" /></div>
+                <Link href="/">
                   <a
                     className="py-2 px-10"
                     style={{ backgroundColor: "rgb(247, 33, 61)" }}
@@ -117,14 +235,28 @@ export default function Layout({ children }) {
               <h1 className="text-black  font-color">info@trendymerches.com</h1>
             </div>
             <div>
-              <h1 className="text-black my-5 font-bold">Category</h1>
-              <div>
+              <div className="flex flex-row">
+                <h1 className="text-black my-5 font-bold">Category</h1>
+                <button onClick={() => { setIsCategoryOpen(!isCategoriyopen) }} className="block mx-5 block md:hidden mt-3 ">
+                  <Image
+                    alt="DropDown icon"
+                    src={isCategoriyopen ? Images.dorpDown : Images.uparrow}
+                    height={30}
+                    width={20}
+                    // layout="fill"
+                    objectFit="contain"
+
+
+                  />
+                </button>
+              </div>
+              {<div>
                 <h1 className="text-black  font-color">hoody</h1>
                 <h1 className="text-black  font-color">Tshirt</h1>
                 <h1 className="text-black  font-color">long sleeve shirt</h1>
                 <h1 className="text-black  font-color">popular</h1>
                 <h1 className="text-black  font-color">limited edition</h1>
-              </div>
+              </div>}
             </div>
             <div>
               <h1 className="text-black my-5 font-bold">Customer core</h1>

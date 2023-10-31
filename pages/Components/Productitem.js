@@ -2,14 +2,29 @@ import Link from "next/link";
 import React from "react";
 import Image from 'next/image'
 
+// Get a cookie
+import { getCookies, setCookie, getCookie } from 'cookies-next';
+
 export default function Productitem({ product }) {
+
   return (
     <div className="card hover:bg-sky-700 group mx-5" >
       <div className="flex flex-col items-center " style={{ width: 250 }}>
         <div style={{ background: '#F6F7FB', height: 250, width: 250 }} className="flex justify-center pt-5">
-          <Link href={`/product/${product.slug}`}>
+          {/* <Link href={`/product/${product.imageUrl}`}> */}
+
+          <Link href={{
+            pathname: '/Components/ProductScreen',
+            query: {
+              productimageUrl: product.imageUrl,
+              productName: product.name,
+              productPrice: product.price,
+              productID: product.id
+            },
+          }}>
+
             <Image
-              src={product.image}
+              src={product.imageUrl}
               alt="product image"
               className="rounded shadow"
               style={{ height: 200, width: 200, justifyContent: 'center', alignItems: 'center' }}
@@ -32,7 +47,7 @@ export default function Productitem({ product }) {
 
       </div>
       <div className="text-right mt-5 " style={{ background: '#FB2E86', width: '70%', textAlign: 'end', float: 'right', borderTopLeftRadius: 20 }}>
-        <p className="p-1.5" style={{ color: 'white', fontWeight: '600' }}>Aman T.</p>
+        <p className="p-1.5" style={{ color: 'white', fontWeight: '600' }}>{product?.name}</p>
       </div>
 
     </div>

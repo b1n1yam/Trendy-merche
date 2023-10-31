@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from 'next/router'
+import useCartStore from "../store/useStore";
 const CartItems = [
   {
     image: "/images/1shoes.jpg",
@@ -32,12 +33,13 @@ const CartItems = [
 export default function ShoppingCart() {
   const router = useRouter();
   const data = router.query;
+  const { remove } = useCartStore();
   console.log("Shopping Cart side ", data)
   const [count, setCount] = useState(0);
   return (
     <Layout>
-      <div className="contactHeader grid grid-cols-5" style={{ height: 150 }}>
-        <div className="col-span-1" />
+      <div className="contactHeader md:grid md:grid-cols-5" style={{ minHeight: 150 }}>
+        <div className="md:col-span-1" />
         <h1
           className="text-black p-10 mx-20 col-span-2"
           style={{
@@ -50,9 +52,9 @@ export default function ShoppingCart() {
           Shopping Cart
         </h1>
       </div>
-      <div className="grid grid-cols-5 md:gap-5 mx-10">
-        <div className="col-span-1" />
-        <div className="overflow-x-auto col-span-2">
+      <div className="md:grid md:grid-cols-5 md:gap-5 mx-10">
+        <div className="md:col-span-1" />
+        <div className="hidden md:block overflow-x-auto col-span-2">
           <table className="min-w-full">
             <thead className="border-b">
               <tr>
@@ -86,7 +88,7 @@ export default function ShoppingCart() {
                   </button>
                 </td>
                 <td className="px-5 tableHeader">
-                  $ {500 * count}
+                  $ {data.productPrice * count}
                 </td>
               </tr>
               {/* ))} */}
@@ -99,12 +101,38 @@ export default function ShoppingCart() {
               </button>
             </div>
             <div className="flex flex-row p-2">
-              <button className="align-center shipping py-2 px-8 mx-1">
+              <button onClick={() => { remove() }} className="align-center shipping py-2 px-8 mx-1">
                 Clear Cart
               </button>
             </div>
           </div>
         </div>
+        {/* small device */}
+        <div className="block md:hidden mt-10 flex flex-row border py-10 rounded">
+          <div>
+            <Image
+              src={data.productimageUrl}
+              alt="product image"
+              className="rounded shadow"
+              width={100}
+              height={100}
+            />
+          </div>
+          <div className="flex flex-col ">
+            <h1 className="px-5 text-left tableHeader font-Regular">Love Red Hoodies</h1>
+            <h1 className="px-5 text-left tableHeader font-bold mt-3">1,400 Birr</h1>
+            <div className="mt-5 flex flex-row justify-center item-center">
+              <button onClick={() => setCount(count - 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#7F56D9' }}>
+                <p className="text-white" style={{ fontSize: 20 }}>-</p>
+              </button>
+              <p className="text-black mt-3">{count}</p>
+              <button onClick={() => setCount(count + 1)} className="px-3 py-1 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#74ed94' }}>
+                <p className="text-white" style={{ fontSize: 20 }}>+</p>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="col-span-1">
           <h1 className="text-center w-full my-4 font-bold tableHeader">Cart Totals</h1>
           <div>
@@ -127,15 +155,25 @@ export default function ShoppingCart() {
                 className="flex flex-row p-2  text-center align-center"
               >
                 <button className="align-center w-full mx-3">
-                  <Link href='/containers/Main/PaymentPage'>Proceed To Checkout</Link>
+                  <Link
+                    href={{
+                      pathname: '/containers/Main/PaymentPage',
+                      query: {
+                        productimageUrl: data.productimageUrl,
+                        productName: data.productName,
+                        productPrice: data.productPrice,
+                        productID: data.productID
+                      },
+                    }}
+                  >Proceed To Checkout</Link>
                 </button>
               </div>
             </div>
           </div>
-          <h1 className="text-center w-full my-4 font-bold tableHeader">
+          <h1 className="hidden text-center w-full my-4 font-bold tableHeader">
             Calculate Shipping
           </h1>
-          <div className="checkOut p-3">
+          <div className="checkOut p-3 hidden">
             <h2 className="tableHeader">For foregin countries</h2>
             <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
               <h2 className="tableHeader">Subtotals </h2>
