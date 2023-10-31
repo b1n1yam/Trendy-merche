@@ -44,7 +44,7 @@ const RegisterModal = () => {
             ]
         }
         axios.post('https://gray-average-barnacle.cyclic.cloud/auth/signup', data).
-            then((response) => { console.log('Login Response', response?.data), setIsLoading(false) }).catch((err) => console.log('Error', err))
+            then((response) => { console.log('Login Response', response?.data), setIsLoading(false), onRegisterClose(), onOpen() }).catch((err) => console.log('Error', err))
     }
     const handleClose = () => {
         onClose()
