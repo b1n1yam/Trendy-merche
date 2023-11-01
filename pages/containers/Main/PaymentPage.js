@@ -23,7 +23,7 @@ export default function PaymentPage() {
             "totalPrice": data?.productPrice,
             "totalTax": 12,
             "uniqueCode": 1,
-            "userId": JSON.parse(Cookiesdata).id,
+            "userId": 1,
             "orderlines": [
                 {
                     "productId": data?.productID,

@@ -162,9 +162,13 @@ export default function ProductScreen() {
                                     <button
                                         //  onClick={() => add()} 
                                         onClick={() => {
-                                            console.log('Clicked Cookies Data', JSON.parse(Cookiesdata).id)
-                                            if (JSON.parse(Cookiesdata).id !== '') {
-                                                add()
+                                            // console.log('Clicked Cookies Data', JSON.parse(Cookiesdata).id)
+                                            if (Cookiesdata !== null && Cookiesdata !== '') {
+                                                if (Cookiesdata !== '') {
+                                                    add()
+                                                } else {
+                                                    onOpen()
+                                                }
                                             } else {
                                                 onOpen()
                                             }

@@ -26,8 +26,8 @@ const LoginModal = () => {
     const handleLogin = () => {
         setIsLoading(true)
         const data = {
-            "email": "admin@gmail.com",
-            "password": "admin"
+            "email": email,
+            "password": password
         }
         axios.post('https://gray-average-barnacle.cyclic.cloud/auth/login', data).
             then((response) => {
@@ -152,6 +152,7 @@ bg-neutral-800/70
                                 <input
                                     id={'Email'}
                                     disabled={false}
+                                    onChange={e => { setEmail(e.currentTarget.value); }}
                                     // {...register(id, { required })}
                                     placeholder="someone@gmail.com"
                                     type="email"
@@ -177,6 +178,7 @@ bg-neutral-800/70
                                 <input
                                     id={'Password'}
                                     disabled={false}
+                                    onChange={e => { setPassword(e.currentTarget.value); }}
                                     // {...register(id, { required })}
                                     placeholder="**************"
                                     type="password"
