@@ -18,7 +18,6 @@ import { Menu } from '@headlessui/react';
 import { getCookies, setCookie, getCookie } from 'cookies-next';
 
 
-
 export default function ProductScreen() {
     const router = useRouter();
     const data = router.query;
