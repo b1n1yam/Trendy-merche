@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 //state
@@ -16,6 +16,7 @@ import Heading from "./Heading";
 import Input from "./Input";
 import LoginModal from "./Modal/loginModal";
 import RegisterModal from "./Modal/registerModal";
+import { useIsLogged } from "../store/useStore";
 
 //package
 import {
@@ -26,16 +27,20 @@ import {
 // import Button from "../../Components/Button";
 import { IoMdClose } from "react-icons/io";
 import { getCookies, setCookie, getCookie, deleteCookie } from 'cookies-next';
+import { Cookies } from 'cookies-next';
+
+
 
 //Assets
 import Images from "../Images";
 
 export default function Layout({ children }) {
   const Cookiesdata = getCookie('userInfo');
-  // console.log('Cookiesdata ', Cookiesdata);
+  console.log('Cookiesdata Layout', Cookiesdata);
   const router = useRouter();
   const { cart } = useCartStore();
   const { isOpen, onOpen, onClose } = useLoginModal();
+  const { isLogged, onLogin, onLogout } = useIsLogged();
   const { isRegisterOpen, onRegisterOpen, onRegisterClose } = useRegisterModal();
   const [isCategoriyopen, setIsCategoryOpen] = useState(false);
   const [isCustomerCoreopen, setIsCustomerCoreOpen] = useState(false);
@@ -44,6 +49,30 @@ export default function Layout({ children }) {
   const handleClose = () => {
     onClose()
   }
+
+  const checkCookies = async () => {
+    // const Cookiesdata = await getCookie('userInfo');
+    console.log('Cookiesdata Layout under check', Cookiesdata);
+    if (Cookiesdata === null) {
+      console.log('Cookies Data is Empty', isLogged)
+      //onLogout()
+    } else {
+      console.log('Cookies Data is Empty not null', isLogged)
+      // onLogin()
+    }
+  }
+
+  useEffect(() => {
+    let subscribe = true;
+    if (subscribe) {
+      checkCookies();
+      console.log('Loggin status layout', isLogged)
+    }
+    return () => {
+      subscribe = false;
+    }
+  }, [])
+
   return (
     <>
       <Head>
@@ -85,7 +114,13 @@ export default function Layout({ children }) {
                 {/* <Link href="/login">
                   <a className="p-2">Login</a>
                 </Link> */}
-                {Cookiesdata === '' ? <button onClick={() => { onOpen() }}>Login</button> : <button onClick={() => { deleteCookie('userInfo') }} className="text-red-700 font-bold">Logout</button>}
+                {!isLogged ? <button onClick={() => { onOpen() }}>Login</button> : <button onClick={() => {
+                  setCookie('userInfo', null, {
+                    path: "/",
+                    maxAge: 300000000, // Expires after 1hr
+                    sameSite: true,
+                  }), onLogout(), console.log('Loggin status', isLogged)
+                }} className="text-red-700 font-bold">Logout</button>}
               </div>
               <div>
                 {/* <Link href="/cart"> */}
@@ -127,9 +162,9 @@ export default function Layout({ children }) {
                 {/* <Link href="/">
                   <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Blog</a>
                 </Link> */}
-                <Link href="/Components/Shipping">
+                {/* <Link href="/Components/Shipping">
                   <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Shipping" ? "red" : "black" }}>Shop</a>
-                </Link>
+                </Link> */}
                 <Link href="/Components/Contactus">
                   <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Contactus" ? "red" : "black" }}>Contact</a>
                 </Link>
@@ -139,16 +174,16 @@ export default function Layout({ children }) {
               </div>
             </div>
             <div className="block md:hidden">
-              <Link href="/">
-                <button onClick={() => setIsMenuActive(!isMenuActive)} style={{ background: '#FB2E86', borderRadius: 100, padding: 5, justifyContent: 'center', alignItems: 'center' }}>
-                  <Image src={Images.menu}
-                    alt="Menu Icon"
-                    height={30}
-                    width={30}
-                    objectFit="contain"
-                  />
-                </button>
-              </Link>
+              {/* <Link href="/"> */}
+              <button onClick={() => setIsMenuActive(!isMenuActive)} style={{ background: '#FB2E86', borderRadius: 100, padding: 5, justifyContent: 'center', alignItems: 'center' }}>
+                <Image src={Images.menu}
+                  alt="Menu Icon"
+                  height={30}
+                  width={30}
+                  objectFit="contain"
+                />
+              </button>
+              {/* </Link> */}
             </div>
 
 
@@ -165,44 +200,55 @@ export default function Layout({ children }) {
 
         <main>
 
-          {isMenuActive ? <div style={{ minHeight: 200, background: '#F6F6F6', marginTop: 20 }} className="block md:hidden">
-            <div className="flex flex-col md:flex-row">
+          {isMenuActive ?
+            <div style={{ minHeight: 200, background: '#F6F6F6', marginTop: 20 }} className="block md:hidden">
+              <div className="flex flex-col md:flex-row">
 
-              <div className="hover:bg-sky-700 my-5 w-full">
-                <Link href="/cart">
-                  <a className="p-2 text-black font-bold my-3 hover:bg-red-500 hover:text-white">English</a>
-                </Link>
-              </div>
-              <div className="my-5">
-                <Link href="/login">
-                  <a className="p-2 text-black font-bold my-3">Birr</a>
-                </Link>
-              </div>
-              <div className="my-5">
-                <Link href="/login">
+                <div className="hover:bg-sky-700 my-5 w-full">
+                  <Link href="/containers/Main/Homepage">
+                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Home</a>
+                  </Link>
+                </div>
+                <div className="my-5">
+                  <Link href="/containers/Main/AllArtistPage">
+                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/AllArtistPage" ? "red" : "black" }} >Product</a>
+                  </Link>
+                </div>
+
+                <div className="my-5">
+
+                  {/* <a className="p-2 text-black font-bold my-3">Wishlist</a> */}
+                  <Link href="/Components/Contactus">
+                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Contactus" ? "red" : "black" }}>Contact</a>
+                  </Link>
+                </div>
+                <div className="my-5">
+                  <Link href="../Components/Aboutus">
+                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Aboutus" ? "red" : "black" }}>About</a>
+                  </Link>
+                </div>
+                <div className="flex flex-row">
+                  <a className="px-6 text-black font-bold">Cart</a>
+                  <p className="text-black font-bold">{cart}</p>
+                </div>
+                <div className="my-5">
+                  {/* <Link href="/login">
                   <a className="p-2 text-black font-bold my-3">Login</a>
-                </Link>
-                {/* <button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
+                </Link> */}
+                  {!isLogged ? <button className=" text-black font-bold px-6" onClick={() => { onOpen() }}>Login</button> : <button onClick={() => {
+                    setCookie('userInfo', null, {
+                      path: "/",
+                      maxAge: 300000000, // Expires after 1hr
+                      sameSite: true,
+                    }), onLogout(), console.log('Loggin status', isLogged)
+                  }} className="text-red-700 font-bold px-6">Logout</button>}
+                  {/* <button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
                   Save changes
                 </button> */}
-              </div>
-              <div className="my-5">
-                {/* <Link href="/cart"> */}
-                <a className="p-2 text-black font-bold my-3">English</a>
-                {/* </Link> */}
-              </div>
-              <div className="my-5">
-                {/* <Link href="/login"> */}
-                <a className="p-2 text-black font-bold my-3">Wishlist</a>
-                {/* </Link> */}
-              </div>
-              <div className="flex flex-row">
-                <a className="mx-2  text-black font-bold">Cart</a>
-                <p className="text-black font-bold">{cart}</p>
-              </div>
+                </div>
 
-            </div>
-          </div> : null}
+              </div>
+            </div> : null}
           <CookiesProvider>
             {children}
           </CookiesProvider>

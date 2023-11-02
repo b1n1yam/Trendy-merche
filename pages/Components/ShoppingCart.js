@@ -76,16 +76,18 @@ export default function ShoppingCart() {
                     height={200}
                   />
                 </td>
-                <td className="px-5 tableHeader">{32}</td>
+                <td className="px-5 tableHeader">{data.productPrice}</td>
                 <td className="px-5 tableHeader">
-                  <button onClick={() => setCount(count - 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#7F56D9' }}>
-                    <p className="text-white" style={{ fontSize: 20 }}>-</p>
-                  </button>
-                  {/* {items.quantity} */}
-                  {count}
-                  <button onClick={() => setCount(count + 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#74ed94' }}>
-                    <p className="text-white" style={{ fontSize: 20 }}>+</p>
-                  </button>
+                  <div>
+                    <button onClick={() => setCount(count - 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#7F56D9' }}>
+                      <p className="text-white" style={{ fontSize: 20 }}>-</p>
+                    </button>
+                    {/* {items.quantity} */}
+                    {count}
+                    <button onClick={() => setCount(count + 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#74ed94' }}>
+                      <p className="text-white" style={{ fontSize: 20 }}>+</p>
+                    </button>
+                  </div>
                 </td>
                 <td className="px-5 tableHeader">
                   $ {data.productPrice * count}
@@ -138,16 +140,16 @@ export default function ShoppingCart() {
           <div>
             <div className="checkOut p-3">
               <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
-                <h2 className="tableHeader">Subtotals </h2>
-                <h2 className="tableHeader">$219.00</h2>
+                <h2 className="tableHeader">Single Price </h2>
+                <h2 className="tableHeader">{data.productPrice}</h2>
               </div>
               <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
                 <h2 className="tableHeader">Totals </h2>
-                <h2 className="tableHeader">$325.00</h2>
+                <h2 className="tableHeader">$ {data.productPrice * count}</h2>
               </div>
               <div className="flex flex-row p-2 mt-5 mb-5">
                 <p className="font-color text-15">
-                  Shipping and Taxes calculated
+                  Taxes calculated
                 </p>
               </div>
               <div
@@ -162,7 +164,8 @@ export default function ShoppingCart() {
                         productimageUrl: data.productimageUrl,
                         productName: data.productName,
                         productPrice: data.productPrice,
-                        productID: data.productID
+                        productID: data.productID,
+                        totalCount: count
                       },
                     }}
                   >Proceed To Checkout</Link>

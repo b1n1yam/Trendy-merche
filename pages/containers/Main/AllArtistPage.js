@@ -1,11 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Layout from "../../Components/Layout";
 import data from "../../utils/data";
 import Productitem from "../../Components/Productitem";
 
 export default function AllArtistPage() {
+    const [product, setProduct] = useState(['']);
+    useEffect(() => {
+        axios.get('https://gray-average-barnacle.cyclic.cloud/product').then((response) => { console.log('Response', response.data), setProduct(response.data) }).catch((err) => console.log('Error', err))
+        // console.log('Response', 'response')
+    }, [])
     return (
         <Layout>
             <div style={{ flex: 1 }}>
@@ -162,28 +168,31 @@ export default function AllArtistPage() {
 
                     <div className="col-span-1 md:col-span-3 px-3 flex-row mt-10">
                         <div className=" flex flex-col md:flex-row mt-10">
-                            {data.products.map((product) => (
+                            {/* {data.products.map((product) => (
                                 <Productitem product={product} key={product.slug}></Productitem>
+                            ))} */}
+                            {product.map((product) => (
+                                <Productitem product={product} key={product.id}></Productitem>
                             ))}
                         </div>
                         <div className=" flex flex-col md:flex-row mt-10">
-                            {data.products.map((product) => (
-                                <Productitem product={product} key={product.slug}></Productitem>
+                            {product.map((product) => (
+                                <Productitem product={product} key={product.id}></Productitem>
                             ))}
                         </div>
                         <div className=" flex flex-col md:flex-row mt-10">
-                            {data.products.map((product) => (
-                                <Productitem product={product} key={product.slug}></Productitem>
+                            {product.map((product) => (
+                                <Productitem product={product} key={product.id}></Productitem>
                             ))}
                         </div>
                         <div className=" flex flex-col md:flex-row mt-10">
-                            {data.products.map((product) => (
-                                <Productitem product={product} key={product.slug}></Productitem>
+                            {product.map((product) => (
+                                <Productitem product={product} key={product.id}></Productitem>
                             ))}
                         </div>
                         <div className=" flex flex-col md:flex-row mt-10">
-                            {data.products.map((product) => (
-                                <Productitem product={product} key={product.slug}></Productitem>
+                            {product.map((product) => (
+                                <Productitem product={product} key={product.id}></Productitem>
                             ))}
                         </div>
                     </div>

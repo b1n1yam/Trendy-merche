@@ -25,7 +25,7 @@ export default function Contactus() {
           </button>
           <div class="flex items-center justify-center mb-10" style={{ color: '#101750', fontSize: 20 }}>
             <p className='font-regular text-black  p-10 text-center' style={{ width: 800, borderRadius: 10, borderWidth: 0.5 }}> Thank you for your order! Your order is being processed and will be completed within 3-6
-              hours. You will receive an email confirmation when your order is completed.</p>
+              days. You will receive an email confirmation when your order is completed.</p>
           </div>
         </div>
         <Link href={'/containers/Main/Homepage'}><div class=" flex items-center justify-center mt-50" style={{ marginTop: 100 }}>

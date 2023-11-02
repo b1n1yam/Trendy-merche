@@ -4,6 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useLoginModal } from "../../store/useStore"
+import { useIsLogged } from "../../store/useStore";
+// import { useIsLogged } from "../store/useStore";
 import { useRegisterModal } from "../../store/useStore";
 import useCartStore from "../../store/useStore";
 import Button from "../Button";
@@ -16,6 +18,7 @@ const LoginModal = () => {
     const { isOpen, onOpen, onClose } = useLoginModal();
     const { isRegisterOpen, onRegisterOpen, onRegisterClose } = useRegisterModal();
     const [isCategoriyopen, setIsCategoryOpen] = useState(false);
+    const { isLogged, onLogin, onLogout } = useIsLogged();
     const [isCustomerCoreopen, setIsCustomerCoreOpen] = useState(false);
     const [isMenuActive, setIsMenuActive] = useState(false);
     const [isPageopen, setIsPageOpen] = useState(false);
@@ -29,6 +32,8 @@ const LoginModal = () => {
             "email": email,
             "password": password
         }
+
+        console.log('Login Data Payload', data);
         axios.post('https://gray-average-barnacle.cyclic.cloud/auth/login', data).
             then((response) => {
                 console.log('Login Response', response), setIsLoading(false), setCookie('userInfo', JSON.stringify(response.data), {
@@ -36,6 +41,7 @@ const LoginModal = () => {
                     maxAge: 300000000, // Expires after 1hr
                     sameSite: true,
                 });
+                onLogin()
                 onClose()
             }).catch((err) => { console.log('Error', err), setIsLoading(false) })
     }

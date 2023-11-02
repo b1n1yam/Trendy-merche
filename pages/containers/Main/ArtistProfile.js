@@ -1,11 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
 import Layout from "../../Components/Layout";
 import data from "../../utils/data";
 import Productitem from "../../Components/Productitem";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function ArtistProfile() {
+    const [product, setProduct] = useState(['']);
+    useEffect(() => {
+        axios.get('https://gray-average-barnacle.cyclic.cloud/product').then((response) => { console.log('Response', response.data), setProduct(response.data) }).catch((err) => console.log('Error', err))
+        // console.log('Response', 'response')
+    }, [])
     return (
         <Layout>
             <div style={{ flex: 1 }}>
@@ -43,18 +49,18 @@ export default function ArtistProfile() {
                             <div className="md:col-span-2" />
                             <div className="md:col-span-3 px-3 md:flex-row mt-10">
                                 <div className="flex flex-col md:flex-row md:mt-10 item-center px-8">
-                                    {data.products.map((product) => (
-                                        <Productitem product={product} key={product.slug}></Productitem>
+                                    {product.map((product) => (
+                                        <Productitem product={product} key={product.id}></Productitem>
                                     ))}
                                 </div>
                                 <div className="flex flex-col md:flex-row mt-10 item-center px-8">
-                                    {data.products.map((product) => (
-                                        <Productitem product={product} key={product.slug}></Productitem>
+                                    {product.map((product) => (
+                                        <Productitem product={product} key={product.id}></Productitem>
                                     ))}
                                 </div>
                                 <div className="flex flex-col md:flex-row mt-10 item-center px-8">
-                                    {data.products.map((product) => (
-                                        <Productitem product={product} key={product.slug}></Productitem>
+                                    {product.map((product) => (
+                                        <Productitem product={product} key={product.id}></Productitem>
                                     ))}
                                 </div>
                             </div>

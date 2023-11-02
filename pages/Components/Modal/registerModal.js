@@ -35,7 +35,7 @@ const RegisterModal = () => {
             "firstName": firstName,
             "lastName": lastName,
             "age": 23,
-            "email": value,
+            "email": email,
             "username": username,
             "password": password,
             "name": middleName,
@@ -43,6 +43,7 @@ const RegisterModal = () => {
                 1, 2, 3
             ]
         }
+        console.log('Register payload', data)
         axios.post('https://gray-average-barnacle.cyclic.cloud/auth/signup', data).
             then((response) => { console.log('Login Response', response?.data), setIsLoading(false), onRegisterClose(), onOpen() }).catch((err) => console.log('Error', err))
     }

@@ -7,8 +7,11 @@ import styles from "../styles/Home.module.css";
 import Layout from "./Components/Layout";
 import Productitem from "./Components/Productitem";
 import data from "./utils/data";
+import React, { useEffect, useState } from "react";
 import Homepage from "./containers/Main/Homepage";
-import { setCookie } from 'cookies-next';
+// import { setCookie } from 'cookies-next';
+import { getCookies, setCookie, getCookie, deleteCookie } from 'cookies-next';
+import { useIsLogged } from "./store/useStore";
 
 // export const getServerSideProps = ({ req, res }) => {
 //   setCookie('username', 'Esubalew Bitew Abebe Melese', { req, res, maxAge: 60 * 6 * 24 });
@@ -19,12 +22,38 @@ import { setCookie } from 'cookies-next';
 //   return { props: {} };
 // };
 export default function Home() {
-
+  const { isLogged, onLogin, onLogout } = useIsLogged();
   setCookie('usernames', 'Esubalew Bitew Abebe Melese', {
     path: "/",
     maxAge: 300000000, // Expires after 1hr
     sameSite: true,
   });
+  const Cookiesdata = getCookie('userInfo');
+
+
+
+  const checkCookies = async () => {
+
+    // console.log('Loggin status on Home page under Home page', isLogged, Cookiesdata)
+    // if (Cookiesdata === null) {
+    //   console.log('Loggin status on Home page under Home page', isLogged, Cookiesdata)
+    //   onLogout()
+    // } else {
+    //   onLogin()
+    // }
+  }
+
+
+  // useEffect(() => {
+  //   let subscribe = true;
+  //   if (subscribe) {
+  //     checkCookies();
+  //     console.log('Loggin status on Home page', isLogged)
+  //   }
+  //   return () => {
+  //     subscribe = false;
+  //   }
+  // }, [])
   // const [cookie, setCookie] = useCookies(["user"])
   // setCookie("user", 'Esubalew Bitew', {
   //   path: "/",

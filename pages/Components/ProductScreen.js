@@ -104,48 +104,6 @@ export default function ProductScreen() {
                                 <div className="mt-5">
                                     <p className="text-black font-bold mx-5" style={{ fontSize: 30 }}>{data?.productPrice} Birr</p>
                                 </div>
-                                {/* <div className="flex flex-row mt-5">
-                  <p className="text-black font-bold mx-5">Color</p>
-                  <div className="flex flex-col" style={{ marginTop: -10 }}>
-                    <div className="mt-5 flex flex-row">
-                      <button
-                        className="bg-red-500 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                      />
-                      <button
-                        className="bg-gray-500 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                      />
-                      <button
-                        className="bg-blue-500 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                      />
-                      <button
-                        className="bg-pink-500 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                      />
-                    </div>
-                    <div className="mt-5 flex flex-row">
-                      <button
-                        className="bg-black-700 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50, background: 'black' }}
-                      />
-                      <button
-                        className="bg-sky-500 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                      />
-                      <button
-                        className="bg-green-500 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                      />
-                      <button
-                        className="bg-orange-500 mx-5"
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                      />
-                    </div>
-                  </div>
-                </div> */}
-
                                 <div className="mt-5 mx-5">
                                     <p style={{ color: '#A9ACC6' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.</p>
                                 </div>
@@ -162,15 +120,12 @@ export default function ProductScreen() {
                                         //  onClick={() => add()} 
                                         onClick={() => {
                                             // console.log('Clicked Cookies Data', JSON.parse(Cookiesdata).id)
-                                            if (Cookiesdata !== null && Cookiesdata !== '') {
-                                                if (Cookiesdata !== '') {
-                                                    add()
-                                                } else {
-                                                    onOpen()
-                                                }
+                                            if (isLogged) {
+                                                add()
                                             } else {
                                                 onOpen()
                                             }
+
                                         }}
 
                                         className="flex flex-row mx-5 my-8 md:mt-10 border-gray-400 rounded-md py-5" style={{ borderWidth: 1 }}>

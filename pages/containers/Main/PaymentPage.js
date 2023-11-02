@@ -14,16 +14,16 @@ export default function PaymentPage() {
     const Cookiesdata = getCookie('userInfo');
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
-    console.log('payment cart data ', data)
+    console.log('payment cart data ', JSON.parse(Cookiesdata)?.id)
 
     const onPressPay = () => {
         setIsLoading(true)
-        const data = {
+        const orderData = {
             "name": data?.productName,
-            "totalPrice": data?.productPrice,
+            "totalPrice": data?.productPrice * data.totalCount,
             "totalTax": 12,
-            "uniqueCode": 1,
-            "userId": 1,
+            "uniqueCode": 693,
+            "userId": JSON.parse((Cookiesdata))?.id,
             "orderlines": [
                 {
                     "productId": data?.productID,
@@ -31,15 +31,16 @@ export default function PaymentPage() {
                     "currency": "ETB",
                     "singlePrice": 30
                 },
-                {
-                    "productId": 1,
-                    "quantity": 5,
-                    "currency": "ETB",
-                    "singlePrice": 30
-                },
+                // {
+                //     "productId": 1,
+                //     "quantity": 5,
+                //     "currency": "ETB",
+                //     "singlePrice": 30
+                // },
             ]
         }
-        axios.post('https://gray-average-barnacle.cyclic.cloud/order', data).then((response) => { console.log('Success Response', response.data), setIsLoading(false), setIsSuccess(true) }).catch((err) => { console.log('Error', err), setIsSuccess(true) })
+        console.log('Product payload', data);
+        axios.post('https://gray-average-barnacle.cyclic.cloud/order', orderData).then((response) => { console.log('Success Response', response.data), setIsLoading(false), setIsSuccess(true) }).catch((err) => { console.log('Error', err) })
         // console.log('Response', 'response')
 
     }

@@ -14,16 +14,13 @@ import {
 import Button from "../../Components/Button";
 import { IoMdClose } from "react-icons/io";
 
-//cookies hook
-// import cookieCutter from 'cookie-cutter'
+
 // Get a cookie
 import { getCookies, setCookie, getCookie } from 'cookies-next';
 
 
-
 //api
 import fetchProduct$ from "../../api/product/fetchAllProduct";
-
 
 //component
 import Heading from "../../Components/Heading";
@@ -31,7 +28,6 @@ import Input from "../../Components/Input";
 
 //hooks
 import { useLoginModal } from "../../store/useStore";
-
 
 
 export const getStaticProps = async () => {
@@ -69,43 +65,8 @@ export default function Homepage({ googledata }) {
     headers: {}
   };
   useEffect(() => {
-    // let subscribe = true;
-    // if (subscribe) {
-    //   function getAllProduct() {
-    //     fetchProduct$().then((res) => {
-    //       console.log('Product response', res)
-    //     }).catch(err)(
-    //       console.log('Error ', err)
-    //     )
-    //   }
-    //   getAllProduct()
-    // }
-    // return () => {
-    //   subscribe = false
-    // }
     axios.get('https://gray-average-barnacle.cyclic.cloud/product').then((response) => { console.log('Response', response.data), setProduct(response.data) }).catch((err) => console.log('Error', err))
     // console.log('Response', 'response')
-
-
-    // axios(config)
-    //   .then(function (response) {
-    //     // console.log(JSON.stringify(response.data));
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // var requestOptions = {
-    //   method: 'GET',
-    //   redirect: 'follow'
-    // };
-
-    //   fetch("https://gray-average-barnacle.cyclic.cloud/product", requestOptions)
-    //     .then(response => response.text())
-    //     .then(result => console.log(result))
-    //     .catch(error => console.log('error', error));
-    // fetch('https://gray-average-barnacle.cyclic.cloud/product/1')
-    //   .then(response => response.json())
-    //   .then(json => console.log("Esubalew", json))
   }, [])
   return (
     <Layout>
@@ -467,8 +428,11 @@ export default function Homepage({ googledata }) {
               </h1>
               <div className="flex justify-center m-0">
                 <div className="flex grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                  {data.products.map((product) => (
+                  {/* {data.products.map((product) => (
                     <Productitem product={product} key={product.slug}></Productitem>
+                  ))} */}
+                  {product.map((product) => (
+                    <Productitem product={product} key={product.id}></Productitem>
                   ))}
                 </div>
 
