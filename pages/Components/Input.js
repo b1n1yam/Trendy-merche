@@ -39,6 +39,7 @@ const Input = ({
       <input
         id={id}
         disabled={disabled}
+        // {...register(id, { required })}
         placeholder=" "
         type={type}
         className={`
@@ -55,8 +56,12 @@ const Input = ({
           disabled:opacity-70
           disabled:cursor-not-allowed
           ${formatPrice ? "pl-9" : "pl-4"}
-          ${errors[id] ? "border-rose-500" : "border-neutral-300"}
-          ${errors[id] ? "focus:border-rose-500" : "focus:border-black"}
+          ${errors && errors[id] ? "border-rose-500" : "border-neutral-300"}
+          ${
+            errors && errors[id]
+              ? "focus:border-rose-500"
+              : "focus:border-black"
+          }
         `}
       />
       <label
