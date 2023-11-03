@@ -191,7 +191,7 @@ export default function Homepage({ googledata }) {
               <div className="flex justify-evenly">
                 <button
                   onClick={() => setproductFilteredBy("New Arrival")}
-                  class="hover:bg-blue-700  font-regular py-2 px-1"
+                  classsName="hover:bg-blue-700  font-regular py-2 px-1"
                   style={{
                     color:
                       productFilteredBy === "New Arrival"
@@ -207,7 +207,7 @@ export default function Homepage({ googledata }) {
                 </button>
                 <button
                   onClick={() => setproductFilteredBy("Best Seller")}
-                  class="hover:bg-blue-700  font-regular py-2 px-1"
+                  classsName="hover:bg-blue-700  font-regular py-2 px-1"
                   style={{
                     color:
                       productFilteredBy === "Best Seller"
@@ -223,7 +223,7 @@ export default function Homepage({ googledata }) {
                 </button>
                 <button
                   onClick={() => setproductFilteredBy("Featured")}
-                  class="hover:bg-blue-700  font-regular py-2 px-1"
+                  classsName="hover:bg-blue-700  font-regular py-2 px-1"
                   style={{
                     color:
                       productFilteredBy === "Featured" ? "#FB2E86" : "#151875",
@@ -235,7 +235,7 @@ export default function Homepage({ googledata }) {
                 </button>
                 <button
                   onClick={() => setproductFilteredBy("Special Offer")}
-                  class="hover:bg-blue-700  font-regular py-2 px-1"
+                  classsName="hover:bg-blue-700  font-regular py-2 px-1"
                   style={{
                     color:
                       productFilteredBy === "Special Offer"
