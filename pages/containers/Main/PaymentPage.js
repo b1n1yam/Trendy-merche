@@ -13,7 +13,6 @@ export default function PaymentPage() {
   const Cookiesdata = getCookie("userInfo");
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  console.log("payment cart data ", JSON.parse(Cookiesdata)?.id);
 
   const onPressPay = () => {
     setIsLoading(true);
@@ -22,7 +21,7 @@ export default function PaymentPage() {
       totalPrice: data?.productPrice * data.totalCount,
       totalTax: 12,
       uniqueCode: 693,
-      userId: "", //Cookiesdata ? JSON.parse(Cookiesdata)?.id :
+      userId: "",
       orderlines: [
         {
           productId: data?.productID,
