@@ -14,7 +14,7 @@ import { getCookie } from "cookies-next";
 //component
 
 //hooks
-import { useLoginModal } from "../../store/useStore";
+import { useLoginModal } from "../../../store/useStore";
 
 export const getStaticProps = async () => {
   const response = await fetch(

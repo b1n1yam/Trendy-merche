@@ -1,77 +1,67 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 //state
-import useCartStore from "../store/useStore";
-import { useLoginModal } from "../store/useStore";
-import { useRegisterModal } from "../store/useStore";
-import { CookiesProvider } from "react-cookie"
+import { CookiesProvider } from "react-cookie";
+import useCartStore, {
+  useLoginModal,
+  useRegisterModal,
+} from "../../store/useStore";
 
 //component
-import Button from "./Button";
-import Heading from "./Heading";
-import Input from "./Input";
+import { useIsLogged } from "../../store/useStore";
 import LoginModal from "./Modal/loginModal";
 import RegisterModal from "./Modal/registerModal";
-import { useIsLogged } from "../store/useStore";
 
 //package
-import {
-  FieldValues,
-  SubmitHandler,
-  useForm
-} from "react-hook-form";
 // import Button from "../../Components/Button";
-import { IoMdClose } from "react-icons/io";
-import { getCookies, setCookie, getCookie, deleteCookie } from 'cookies-next';
-import { Cookies } from 'cookies-next';
-
-
+import { getCookie, setCookie } from "cookies-next";
 
 //Assets
-import Images from "../Images";
+import Images from "../../utils/Images";
 
 export default function Layout({ children }) {
-  const Cookiesdata = getCookie('userInfo');
-  console.log('Cookiesdata Layout', Cookiesdata);
+  const Cookiesdata = getCookie("userInfo");
+  console.log("Cookiesdata Layout", Cookiesdata);
   const router = useRouter();
   const { cart } = useCartStore();
   const { isOpen, onOpen, onClose } = useLoginModal();
   const { isLogged, onLogin, onLogout } = useIsLogged();
-  const { isRegisterOpen, onRegisterOpen, onRegisterClose } = useRegisterModal();
+  const { isRegisterOpen, onRegisterOpen, onRegisterClose } =
+    useRegisterModal();
   const [isCategoriyopen, setIsCategoryOpen] = useState(false);
   const [isCustomerCoreopen, setIsCustomerCoreOpen] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isPageopen, setIsPageOpen] = useState(false);
   const handleClose = () => {
-    onClose()
-  }
+    onClose();
+  };
 
   const checkCookies = async () => {
     // const Cookiesdata = await getCookie('userInfo');
-    console.log('Cookiesdata Layout under check', Cookiesdata);
+    console.log("Cookiesdata Layout under check", Cookiesdata);
     if (Cookiesdata === null) {
-      console.log('Cookies Data is Empty', isLogged)
+      console.log("Cookies Data is Empty", isLogged);
       //onLogout()
     } else {
-      console.log('Cookies Data is Empty not null', isLogged)
+      console.log("Cookies Data is Empty not null", isLogged);
       // onLogin()
     }
-  }
+  };
 
   useEffect(() => {
     let subscribe = true;
     if (subscribe) {
       checkCookies();
-      console.log('Loggin status layout', isLogged)
+      console.log("Loggin status layout", isLogged);
     }
     return () => {
       subscribe = false;
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <>
@@ -99,7 +89,6 @@ export default function Layout({ children }) {
             {isOpen ? <LoginModal /> : null}
             {isRegisterOpen ? <RegisterModal /> : null}
             <div className="md:flex md:flex-row hidden  md:block ">
-
               <div>
                 <Link href="/cart">
                   <a className="p-2">English</a>
@@ -114,13 +103,30 @@ export default function Layout({ children }) {
                 {/* <Link href="/login">
                   <a className="p-2">Login</a>
                 </Link> */}
-                {!isLogged ? <button onClick={() => { onOpen() }}>Login</button> : <button onClick={() => {
-                  setCookie('userInfo', null, {
-                    path: "/",
-                    maxAge: 300000000, // Expires after 1hr
-                    sameSite: true,
-                  }), onLogout(), console.log('Loggin status', isLogged)
-                }} className="text-red-700 font-bold">Logout</button>}
+                {!isLogged ? (
+                  <button
+                    onClick={() => {
+                      onOpen();
+                    }}
+                  >
+                    Login
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setCookie("userInfo", null, {
+                        path: "/",
+                        maxAge: 300000000, // Expires after 1hr
+                        sameSite: true,
+                      }),
+                        onLogout(),
+                        console.log("Loggin status", isLogged);
+                    }}
+                    className="text-red-700 font-bold"
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
               <div>
                 {/* <Link href="/cart"> */}
@@ -136,28 +142,46 @@ export default function Layout({ children }) {
                 <a className="mx-5">Cart</a>
                 <p>{cart}</p>
               </div>
-
             </div>
           </nav>
           <nav className="flex h-10 items-center px-10 py-8 justify-between ">
             <div className="flex flex-row justify-around">
               <Link href="/">
                 <Image
-                  alt={'Trendy Merches Logo'}
-                  src={'/images/Trendy Merches.png'}
+                  alt={"Trendy Merches Logo"}
+                  src={"/images/Trendy Merches.png"}
                   height={20}
                   width={180}
-
                 />
               </Link>
 
               <div className="px-10 hidden md:block">
                 <Link href="/containers/Main/Homepage">
-                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Home</a>
+                  <a
+                    className="text-md px-6 text-black"
+                    style={{
+                      color:
+                        router.pathname == "/containers/Main/Homepage"
+                          ? "red"
+                          : "black",
+                    }}
+                  >
+                    Home
+                  </a>
                 </Link>
 
                 <Link href="/containers/Main/AllArtistPage">
-                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/AllArtistPage" ? "red" : "black" }} >Product</a>
+                  <a
+                    className="text-md px-6 text-black"
+                    style={{
+                      color:
+                        router.pathname == "/containers/Main/AllArtistPage"
+                          ? "red"
+                          : "black",
+                    }}
+                  >
+                    Product
+                  </a>
                 </Link>
                 {/* <Link href="/">
                   <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Blog</a>
@@ -166,17 +190,47 @@ export default function Layout({ children }) {
                   <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Shipping" ? "red" : "black" }}>Shop</a>
                 </Link> */}
                 <Link href="/Components/Contactus">
-                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Contactus" ? "red" : "black" }}>Contact</a>
+                  <a
+                    className="text-md px-6 text-black"
+                    style={{
+                      color:
+                        router.pathname == "/Components/Contactus"
+                          ? "red"
+                          : "black",
+                    }}
+                  >
+                    Contact
+                  </a>
                 </Link>
                 <Link href="../Components/Aboutus">
-                  <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Aboutus" ? "red" : "black" }}>About</a>
+                  <a
+                    className="text-md px-6 text-black"
+                    style={{
+                      color:
+                        router.pathname == "/Components/Aboutus"
+                          ? "red"
+                          : "black",
+                    }}
+                  >
+                    About
+                  </a>
                 </Link>
               </div>
             </div>
             <div className="block md:hidden">
               {/* <Link href="/"> */}
-              <button onClick={() => setIsMenuActive(!isMenuActive)} style={{ background: '#FB2E86', borderRadius: 100, padding: 5, justifyContent: 'center', alignItems: 'center' }}>
-                <Image src={Images.menu}
+              <button
+                onClick={() => setIsMenuActive(!isMenuActive)}
+                style={{
+                  background: "#FB2E86",
+                  borderRadius: 100,
+                  padding: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src={Images.menu}
                   alt="Menu Icon"
                   height={30}
                   width={30}
@@ -185,7 +239,6 @@ export default function Layout({ children }) {
               </button>
               {/* </Link> */}
             </div>
-
 
             <div className="border hidden lg:block">
               <input placeholder="Search your Favourite" />
@@ -199,32 +252,72 @@ export default function Layout({ children }) {
         </header>
 
         <main>
-
-          {isMenuActive ?
-            <div style={{ minHeight: 200, background: '#F6F6F6', marginTop: 20 }} className="block md:hidden">
+          {isMenuActive ? (
+            <div
+              style={{ minHeight: 200, background: "#F6F6F6", marginTop: 20 }}
+              className="block md:hidden"
+            >
               <div className="flex flex-col md:flex-row">
-
                 <div className="hover:bg-sky-700 my-5 w-full">
                   <Link href="/containers/Main/Homepage">
-                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/Homepage" ? "red" : "black" }}>Home</a>
+                    <a
+                      className="text-md px-6 text-black"
+                      style={{
+                        color:
+                          router.pathname == "/containers/Main/Homepage"
+                            ? "red"
+                            : "black",
+                      }}
+                    >
+                      Home
+                    </a>
                   </Link>
                 </div>
                 <div className="my-5">
                   <Link href="/containers/Main/AllArtistPage">
-                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/containers/Main/AllArtistPage" ? "red" : "black" }} >Product</a>
+                    <a
+                      className="text-md px-6 text-black"
+                      style={{
+                        color:
+                          router.pathname == "/containers/Main/AllArtistPage"
+                            ? "red"
+                            : "black",
+                      }}
+                    >
+                      Product
+                    </a>
                   </Link>
                 </div>
 
                 <div className="my-5">
-
                   {/* <a className="p-2 text-black font-bold my-3">Wishlist</a> */}
                   <Link href="/Components/Contactus">
-                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Contactus" ? "red" : "black" }}>Contact</a>
+                    <a
+                      className="text-md px-6 text-black"
+                      style={{
+                        color:
+                          router.pathname == "/Components/Contactus"
+                            ? "red"
+                            : "black",
+                      }}
+                    >
+                      Contact
+                    </a>
                   </Link>
                 </div>
                 <div className="my-5">
                   <Link href="../Components/Aboutus">
-                    <a className="text-md px-6 text-black" style={{ color: router.pathname == "/Components/Aboutus" ? "red" : "black" }}>About</a>
+                    <a
+                      className="text-md px-6 text-black"
+                      style={{
+                        color:
+                          router.pathname == "/Components/Aboutus"
+                            ? "red"
+                            : "black",
+                      }}
+                    >
+                      About
+                    </a>
                   </Link>
                 </div>
                 <div className="flex flex-row">
@@ -235,23 +328,39 @@ export default function Layout({ children }) {
                   {/* <Link href="/login">
                   <a className="p-2 text-black font-bold my-3">Login</a>
                 </Link> */}
-                  {!isLogged ? <button className=" text-black font-bold px-6" onClick={() => { onOpen() }}>Login</button> : <button onClick={() => {
-                    setCookie('userInfo', null, {
-                      path: "/",
-                      maxAge: 300000000, // Expires after 1hr
-                      sameSite: true,
-                    }), onLogout(), console.log('Loggin status', isLogged)
-                  }} className="text-red-700 font-bold px-6">Logout</button>}
+                  {!isLogged ? (
+                    <button
+                      className=" text-black font-bold px-6"
+                      onClick={() => {
+                        onOpen();
+                      }}
+                    >
+                      Login
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setCookie("userInfo", null, {
+                          path: "/",
+                          maxAge: 300000000, // Expires after 1hr
+                          sameSite: true,
+                        }),
+                          onLogout(),
+                          console.log("Loggin status", isLogged);
+                      }}
+                      className="text-red-700 font-bold px-6"
+                    >
+                      Logout
+                    </button>
+                  )}
                   {/* <button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
                   Save changes
                 </button> */}
                 </div>
-
               </div>
-            </div> : null}
-          <CookiesProvider>
-            {children}
-          </CookiesProvider>
+            </div>
+          ) : null}
+          <CookiesProvider>{children}</CookiesProvider>
         </main>
 
         <footer className="flex  w-full  shadow-inner mt-10 ">
@@ -265,7 +374,9 @@ export default function Layout({ children }) {
                 Merches
               </h1>
               <div className="mt-5 mb-5 md:flex flex-row">
-                <div className="mb-5 md:mt-0"><input placeholder="Enter Email Address" /></div>
+                <div className="mb-5 md:mt-0">
+                  <input placeholder="Enter Email Address" />
+                </div>
                 <Link href="/">
                   <a
                     className="py-2 px-10"
@@ -283,7 +394,12 @@ export default function Layout({ children }) {
             <div>
               <div className="flex flex-row">
                 <h1 className="text-black my-5 font-bold">Category</h1>
-                <button onClick={() => { setIsCategoryOpen(!isCategoriyopen) }} className="block mx-5 block md:hidden mt-3 ">
+                <button
+                  onClick={() => {
+                    setIsCategoryOpen(!isCategoriyopen);
+                  }}
+                  className="block mx-5 block md:hidden mt-3 "
+                >
                   <Image
                     alt="DropDown icon"
                     src={isCategoriyopen ? Images.dorpDown : Images.uparrow}
@@ -291,18 +407,18 @@ export default function Layout({ children }) {
                     width={20}
                     // layout="fill"
                     objectFit="contain"
-
-
                   />
                 </button>
               </div>
-              {<div>
-                <h1 className="text-black  font-color">hoody</h1>
-                <h1 className="text-black  font-color">Tshirt</h1>
-                <h1 className="text-black  font-color">long sleeve shirt</h1>
-                <h1 className="text-black  font-color">popular</h1>
-                <h1 className="text-black  font-color">limited edition</h1>
-              </div>}
+              {
+                <div>
+                  <h1 className="text-black  font-color">hoody</h1>
+                  <h1 className="text-black  font-color">Tshirt</h1>
+                  <h1 className="text-black  font-color">long sleeve shirt</h1>
+                  <h1 className="text-black  font-color">popular</h1>
+                  <h1 className="text-black  font-color">limited edition</h1>
+                </div>
+              }
             </div>
             <div>
               <h1 className="text-black my-5 font-bold">Customer core</h1>
