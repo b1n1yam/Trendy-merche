@@ -5,7 +5,7 @@ import useCartStore from "../../store/useStore";
 import Layout from "../Components/Layout";
 //updated
 //modal
-import { useLoginModal } from "../store/useStore";
+import { useLoginModal } from "../../store/useStore";
 //packages
 import ReactStars from "react-star-rating-component";
 
