@@ -12,7 +12,7 @@ export default function Productitem({ product }) {
           style={{ background: "#F6F7FB", height: 250, width: 250 }}
           className="flex justify-center pt-5"
         >
-          {/* <Link href={`/product/${product.imageUrl}`}> */}
+          {/* <Link href={`/product/${product?.imageUrl}`}> */}
 
           <Link
             href={{
@@ -48,7 +48,7 @@ export default function Productitem({ product }) {
             className="mt-5 mb-5 text-red-600 group-hover:text-white"
             style={{ fontWeight: "600" }}
           >
-            {product.brand}
+            {product?.brand}
           </p>
           <Image
             src={"/images/ProductIconicLabel.png"}
@@ -65,7 +65,7 @@ export default function Productitem({ product }) {
             className="mb-2 mt-5 text-red-600 group-hover:text-white"
             style={{ fontWeight: "600" }}
           >
-            $ {product.price}
+            $ {product?.price}
           </p>
         </div>
       </div>
