@@ -21,7 +21,7 @@ export default function PaymentPage() {
       totalPrice: data?.productPrice * data.totalCount,
       totalTax: 12,
       uniqueCode: 693,
-      userId: "",
+      userId: Cookiesdata && JSON.parse(Cookiesdata)?.id,
       orderlines: [
         {
           productId: data?.productID,
