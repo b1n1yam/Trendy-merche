@@ -39,7 +39,6 @@ const Input = ({
       <input
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
         placeholder=" "
         type={type}
         className={`
