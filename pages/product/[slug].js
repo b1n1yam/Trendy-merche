@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import useCartStore from "../../store/useStore";
 import Layout from "../Components/Layout";
-
+//updated
 //modal
 import { useLoginModal } from "../store/useStore";
 //packages
