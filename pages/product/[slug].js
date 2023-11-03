@@ -49,7 +49,7 @@ export default function ProductScreens() {
                 <div className="p-5 m-5 shadow-md">
                   <Image
                     src={slug}
-                    alt={product.name}
+                    alt={"product.name"}
                     width={70}
                     height={50}
                     layout="responsive"
@@ -58,7 +58,7 @@ export default function ProductScreens() {
                 <div className="p-5 m-5 shadow-md">
                   <Image
                     src={slug}
-                    alt={product.name}
+                    alt={"product.name"}
                     width={70}
                     height={50}
                     layout="responsive"
@@ -67,7 +67,7 @@ export default function ProductScreens() {
                 <div className="p-5 m-5 shadow-md">
                   <Image
                     src={slug}
-                    alt={product.name}
+                    alt={"product.name"}
                     width={70}
                     height={50}
                     layout="responsive"
@@ -78,7 +78,7 @@ export default function ProductScreens() {
                 <div className="p-10 shadow-md">
                   <Image
                     src={slug}
-                    alt={product.name}
+                    alt={"product.name"}
                     width={70}
                     height={80}
                     layout="responsive"
