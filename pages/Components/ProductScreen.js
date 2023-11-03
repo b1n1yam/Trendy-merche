@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import useCartStore from "../store/useStore";
+import useCartStore from "../../store/useStore";
 import Layout from "./Layout";
 
 //modal
-import { useIsLogged, useLoginModal } from "../store/useStore";
+import { useIsLogged, useLoginModal } from "../../store/useStore";
 //packages
 import ReactStars from "react-star-rating-component";
 

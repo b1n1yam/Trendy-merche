@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Layout from "./Layout";
-import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from 'next/router'
-import useCartStore from "../store/useStore";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import useCartStore from "../../store/useStore";
+import Layout from "./Layout";
 const CartItems = [
   {
     image: "/images/1shoes.jpg",
@@ -34,11 +34,14 @@ export default function ShoppingCart() {
   const router = useRouter();
   const data = router.query;
   const { remove } = useCartStore();
-  console.log("Shopping Cart side ", data)
+  console.log("Shopping Cart side ", data);
   const [count, setCount] = useState(0);
   return (
     <Layout>
-      <div className="contactHeader md:grid md:grid-cols-5" style={{ minHeight: 150 }}>
+      <div
+        className="contactHeader md:grid md:grid-cols-5"
+        style={{ minHeight: 150 }}
+      >
         <div className="md:col-span-1" />
         <h1
           className="text-black p-10 mx-20 col-span-2"
@@ -58,9 +61,13 @@ export default function ShoppingCart() {
           <table className="min-w-full">
             <thead className="border-b">
               <tr>
-                <th className="px-5 text-left tableHeader font-bold">Product</th>
+                <th className="px-5 text-left tableHeader font-bold">
+                  Product
+                </th>
                 <th className="p-5 text-left tableHeader font-bold">Price</th>
-                <th className="p-5 text-left tableHeader font-bold">Quantity</th>
+                <th className="p-5 text-left tableHeader font-bold">
+                  Quantity
+                </th>
                 <th className="p-5 text-left tableHeader font-bold">Total</th>
               </tr>
             </thead>
@@ -79,13 +86,33 @@ export default function ShoppingCart() {
                 <td className="px-5 tableHeader">{data.productPrice}</td>
                 <td className="px-5 tableHeader">
                   <div>
-                    <button onClick={() => setCount(count - 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#7F56D9' }}>
-                      <p className="text-white" style={{ fontSize: 20 }}>-</p>
+                    <button
+                      onClick={() => setCount(count - 1)}
+                      className="px-3 py-2 rounded-sm mx-5"
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        background: "#7F56D9",
+                      }}
+                    >
+                      <p className="text-white" style={{ fontSize: 20 }}>
+                        -
+                      </p>
                     </button>
                     {/* {items.quantity} */}
                     {count}
-                    <button onClick={() => setCount(count + 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#74ed94' }}>
-                      <p className="text-white" style={{ fontSize: 20 }}>+</p>
+                    <button
+                      onClick={() => setCount(count + 1)}
+                      className="px-3 py-2 rounded-sm mx-5"
+                      style={{
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        background: "#74ed94",
+                      }}
+                    >
+                      <p className="text-white" style={{ fontSize: 20 }}>
+                        +
+                      </p>
                     </button>
                   </div>
                 </td>
@@ -103,7 +130,12 @@ export default function ShoppingCart() {
               </button>
             </div>
             <div className="flex flex-row p-2">
-              <button onClick={() => { remove() }} className="align-center shipping py-2 px-8 mx-1">
+              <button
+                onClick={() => {
+                  remove();
+                }}
+                className="align-center shipping py-2 px-8 mx-1"
+              >
                 Clear Cart
               </button>
             </div>
@@ -121,36 +153,66 @@ export default function ShoppingCart() {
             />
           </div>
           <div className="flex flex-col ">
-            <h1 className="px-5 text-left tableHeader font-Regular">Love Red Hoodies</h1>
-            <h1 className="px-5 text-left tableHeader font-bold mt-3">1,400 Birr</h1>
+            <h1 className="px-5 text-left tableHeader font-Regular">
+              Love Red Hoodies
+            </h1>
+            <h1 className="px-5 text-left tableHeader font-bold mt-3">
+              1,400 Birr
+            </h1>
             <div className="mt-5 flex flex-row justify-center item-center">
-              <button onClick={() => setCount(count - 1)} className="px-3 py-2 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#7F56D9' }}>
-                <p className="text-white" style={{ fontSize: 20 }}>-</p>
+              <button
+                onClick={() => setCount(count - 1)}
+                className="px-3 py-2 rounded-sm mx-5"
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  background: "#7F56D9",
+                }}
+              >
+                <p className="text-white" style={{ fontSize: 20 }}>
+                  -
+                </p>
               </button>
               <p className="text-black mt-3">{count}</p>
-              <button onClick={() => setCount(count + 1)} className="px-3 py-1 rounded-sm mx-5" style={{ borderWidth: 1, borderRadius: 10, background: '#74ed94' }}>
-                <p className="text-white" style={{ fontSize: 20 }}>+</p>
+              <button
+                onClick={() => setCount(count + 1)}
+                className="px-3 py-1 rounded-sm mx-5"
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 10,
+                  background: "#74ed94",
+                }}
+              >
+                <p className="text-white" style={{ fontSize: 20 }}>
+                  +
+                </p>
               </button>
             </div>
           </div>
         </div>
 
         <div className="col-span-1">
-          <h1 className="text-center w-full my-4 font-bold tableHeader">Cart Totals</h1>
+          <h1 className="text-center w-full my-4 font-bold tableHeader">
+            Cart Totals
+          </h1>
           <div>
             <div className="checkOut p-3">
-              <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
+              <div
+                className="flex flex-row justify-between p-2 my-5"
+                style={{ borderColor: "#071242", borderBottomWidth: 1 }}
+              >
                 <h2 className="tableHeader">Single Price </h2>
                 <h2 className="tableHeader">{data.productPrice}</h2>
               </div>
-              <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
+              <div
+                className="flex flex-row justify-between p-2 my-5"
+                style={{ borderColor: "#071242", borderBottomWidth: 1 }}
+              >
                 <h2 className="tableHeader">Totals </h2>
                 <h2 className="tableHeader">$ {data.productPrice * count}</h2>
               </div>
               <div className="flex flex-row p-2 mt-5 mb-5">
-                <p className="font-color text-15">
-                  Taxes calculated
-                </p>
+                <p className="font-color text-15">Taxes calculated</p>
               </div>
               <div
                 style={{ backgroundColor: "rgb(6, 161, 6)" }}
@@ -159,16 +221,18 @@ export default function ShoppingCart() {
                 <button className="align-center w-full mx-3">
                   <Link
                     href={{
-                      pathname: '/containers/Main/PaymentPage',
+                      pathname: "/containers/Main/PaymentPage",
                       query: {
                         productimageUrl: data.productimageUrl,
                         productName: data.productName,
                         productPrice: data.productPrice,
                         productID: data.productID,
-                        totalCount: count
+                        totalCount: count,
                       },
                     }}
-                  >Proceed To Checkout</Link>
+                  >
+                    Proceed To Checkout
+                  </Link>
                 </button>
               </div>
             </div>
@@ -178,11 +242,17 @@ export default function ShoppingCart() {
           </h1>
           <div className="checkOut p-3 hidden">
             <h2 className="tableHeader">For foregin countries</h2>
-            <div className="flex flex-row justify-between p-2 my-5" style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
+            <div
+              className="flex flex-row justify-between p-2 my-5"
+              style={{ borderColor: "#071242", borderBottomWidth: 1 }}
+            >
               <h2 className="tableHeader">Subtotals </h2>
               <h2 className="tableHeader">$219.00</h2>
             </div>
-            <div className="flex flex-row justify-between p-2 my-5 " style={{ borderColor: "#071242", borderBottomWidth: 1 }}>
+            <div
+              className="flex flex-row justify-between p-2 my-5 "
+              style={{ borderColor: "#071242", borderBottomWidth: 1 }}
+            >
               <h2 className="tableHeader">Totals </h2>
               <h2 className="tableHeader">$325.00</h2>
             </div>
@@ -192,14 +262,21 @@ export default function ShoppingCart() {
               </p>
             </div>
             <div className="flex flex-row p-2">
-              <button onClick={() => { }} className="align-center shipping px-8 py-2 ">
-                <Link href={{
-                  pathname: '/Components/Shipping',
-                  query: {
-                    productimageUrl: data.productimageUrl,
-                    productName: data.productName
-                  }
-                }}><p> Calculate Shipping</p></Link>
+              <button
+                onClick={() => {}}
+                className="align-center shipping px-8 py-2 "
+              >
+                <Link
+                  href={{
+                    pathname: "/Components/Shipping",
+                    query: {
+                      productimageUrl: data.productimageUrl,
+                      productName: data.productName,
+                    },
+                  }}
+                >
+                  <p> Calculate Shipping</p>
+                </Link>
               </button>
             </div>
           </div>

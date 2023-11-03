@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import useCartStore from "../../store/useStore";
 import Layout from "../Components/Layout";
-import useCartStore from "../store/useStore";
 
 //modal
 import { useLoginModal } from "../store/useStore";
